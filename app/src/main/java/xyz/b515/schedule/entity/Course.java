@@ -1,5 +1,7 @@
 package xyz.b515.schedule.entity;
 
+import android.graphics.Color;
+
 import com.j256.ormlite.field.DatabaseField;
 import com.j256.ormlite.table.DatabaseTable;
 
@@ -16,11 +18,12 @@ public class Course {
     @DatabaseField String location;
     @DatabaseField boolean oddWeek;
     @DatabaseField boolean evenWeek;
+    @DatabaseField Color color;
 
     public Course() {
     }
 
-    public Course(int id, int week, int startTime, int endTime, int startWeek, int endWeek, String name, String teacher, String location, boolean oddWeek, boolean evenWeek) {
+    public Course(int id, int week, int startTime, int endTime, int startWeek, int endWeek, String name, String teacher, String location, boolean oddWeek, boolean evenWeek, Color color) {
         this.id = id;
         this.week = week;
         this.startTime = startTime;
@@ -32,7 +35,13 @@ public class Course {
         this.location = location;
         this.oddWeek = oddWeek;
         this.evenWeek = evenWeek;
+        this.color = color;
     }
+
+    public Color getColor() {
+        return color;
+    }
+
 
     public int getId() {
         return id;
@@ -121,4 +130,9 @@ public class Course {
     public void setEvenWeek(boolean evenWeek) {
         this.evenWeek = evenWeek;
     }
+
+    public void setColor(Color color) {
+        this.color = color;
+    }
+
 }
