@@ -9,4 +9,8 @@
     <string name="table_thu">周四</string>
     <string name="table_tue">周二</string>
     <string name="table_wed">周三</string>
+    <string name="action_add">添加课程</string>
+    <string name="action_confirm">确认</string>
+    <string name="action_import">导入课程</string>
+    <string name="app_add">新课程</string>
 </resources>
