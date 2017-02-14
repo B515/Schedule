@@ -1,4 +1,4 @@
-package xyz.b515.schedule;
+package xyz.b515.schedule.ui;
 
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -7,6 +7,8 @@ import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
+
+import xyz.b515.schedule.R;
 
 import static xyz.b515.schedule.R.id.toolbar;
 
