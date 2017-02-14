@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">课程表</string>
+    <string name="action_settings">设置</string>
+    <string name="table_fri">周五</string>
+    <string name="table_mon">周一</string>
+    <string name="table_sat">周六</string>
+    <string name="table_sun">周日</string>
+    <string name="table_thu">周四</string>
+    <string name="table_tue">周二</string>
+    <string name="table_wed">周三</string>
+</resources>

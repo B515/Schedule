@@ -1,4 +1,12 @@
 <resources>
     <string name="app_name">Schedule</string>
     <string name="action_settings">Settings</string>
+    <string name="table_mon">Mon</string>
+    <string name="table_tue">Tue</string>
+    <string name="table_wed">Wed</string>
+    <string name="table_thu">Thu</string>
+    <string name="table_fri">Fri</string>
+    <string name="table_sat">Sat</string>
+    <string name="table_sun">Sun</string>
+
 </resources>
