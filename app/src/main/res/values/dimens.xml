@@ -3,5 +3,4 @@
     <dimen name="table_width">45dp</dimen>
     <dimen name="table_textSize">20sp</dimen>
     <dimen name="table_mini_textSize">16sp</dimen>
-    <dimen name="appbar_padding_top">8dp</dimen>
 </resources>
