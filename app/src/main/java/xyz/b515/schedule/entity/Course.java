@@ -8,7 +8,7 @@ import com.j256.ormlite.table.DatabaseTable;
 @DatabaseTable(tableName = "courses")
 public class Course {
     @DatabaseField(generatedId = true) int id;
-    @DatabaseField int week;
+    @DatabaseField int weekday;
     @DatabaseField int startTime;
     @DatabaseField int endTime;
     @DatabaseField int startWeek;
@@ -16,16 +16,16 @@ public class Course {
     @DatabaseField String name;
     @DatabaseField String teacher;
     @DatabaseField String location;
-    @DatabaseField boolean oddWeek;
-    @DatabaseField boolean evenWeek;
+    @DatabaseField boolean oddWeek = false;
+    @DatabaseField boolean evenWeek = false;
     @DatabaseField Color color;
 
     public Course() {
     }
 
-    public Course(int id, int week, int startTime, int endTime, int startWeek, int endWeek, String name, String teacher, String location, boolean oddWeek, boolean evenWeek, Color color) {
+    public Course(int id, int weekday, int startTime, int endTime, int startWeek, int endWeek, String name, String teacher, String location, boolean oddWeek, boolean evenWeek, Color color) {
         this.id = id;
-        this.week = week;
+        this.weekday = weekday;
         this.startTime = startTime;
         this.endTime = endTime;
         this.startWeek = startWeek;
@@ -47,8 +47,8 @@ public class Course {
         return id;
     }
 
-    public int getWeek() {
-        return week;
+    public int getWeekday() {
+        return weekday;
     }
 
     public int getStartTime() {
@@ -91,8 +91,8 @@ public class Course {
         this.id = id;
     }
 
-    public void setWeek(int week) {
-        this.week = week;
+    public void setWeekday(int weekday) {
+        this.weekday = weekday;
     }
 
     public void setStartTime(int startTime) {
