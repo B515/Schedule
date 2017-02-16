@@ -1,15 +1,20 @@
 <resources>
     <string name="app_name">Schedule</string>
-    <string name="app_add">New Course</string>
+
     <string name="action_add">Add Course</string>
     <string name="action_confirm">Confirm</string>
     <string name="action_delete_forever">Delete Forever</string>
     <string name="action_import">Import</string>
     <string name="action_settings">Settings</string>
+
     <string name="alert_title">Warning</string>
     <string name="alert_msg">Do you really want to delete this course?</string>
     <string name="alert_neg">Cancel</string>
     <string name="alert_pos">Okay</string>
+
+    <string name="course_edit">Edit Course</string>
+    <string name="course_new">New Course</string>
+
     <string name="table_mon">Mon</string>
     <string name="table_tue">Tue</string>
     <string name="table_wed">Wed</string>

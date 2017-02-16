@@ -12,10 +12,11 @@
     <string name="action_add">添加课程</string>
     <string name="action_confirm">确认</string>
     <string name="action_import">导入课程</string>
-    <string name="app_add">新课程</string>
     <string name="action_delete_forever">永久删除</string>
     <string name="alert_msg">确认删除此课程？</string>
     <string name="alert_neg">去意已决 下次再说</string>
     <string name="alert_pos">我就是要任性地删除</string>
     <string name="alert_title">严正警告</string>
+    <string name="course_edit">编辑课程</string>
+    <string name="course_new">新建课程</string>
 </resources>

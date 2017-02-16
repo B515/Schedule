@@ -22,16 +22,14 @@ public class CourseActivity extends AppCompatActivity {
         setContentView(R.layout.activity_course);
         ButterKnife.bind(this);
         Intent intent = getIntent();
-        final String title = intent.getStringExtra("toolbar_title");
-
-        toolbar.setTitle(title);
+        flag = intent.getBooleanExtra("toolbar_title", true);
+        if(flag){
+            toolbar.setTitle(R.string.course_new);
+        } else {
+            toolbar.setTitle(R.string.course_edit);
+        }
         setSupportActionBar(toolbar);
 
-        if(title.equals("Add Course")){
-            flag = true;
-        } else {
-            flag = false;
-        }
 
         toolbar.setNavigationOnClickListener(v -> onBackPressed());
         toolbar.setOnMenuItemClickListener(menuItem -> {

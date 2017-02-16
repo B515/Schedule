@@ -41,7 +41,7 @@ public class MainActivity extends AppCompatActivity {
         switch(id){
             case R.id.action_add: {
                 Intent intent=new Intent(this, CourseActivity.class);
-                intent.putExtra("toolbar_title", "Add Course");
+                intent.putExtra("toolbar_title", true);
                 startActivity(intent);
             } break;
             case R.id.action_refresh: {
