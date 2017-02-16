@@ -40,7 +40,8 @@ public class MainActivity extends AppCompatActivity {
         int id = item.getItemId();
         switch(id){
             case R.id.action_add: {
-                Intent intent=new Intent(this, AddActivity.class);
+                Intent intent=new Intent(this, CourseActivity.class);
+                intent.putExtra("toolbar_title", "Add Course");
                 startActivity(intent);
             } break;
             case R.id.action_refresh: {

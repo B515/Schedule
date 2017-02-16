@@ -2,7 +2,7 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context=".ui.AddActivity">
+    tools:context=".ui.CourseActivity">
     <item android:id="@+id/action_confirm"
         android:title="@string/action_confirm"
         android:orderInCategory="80"
