@@ -23,23 +23,18 @@ public class CourseActivity extends AppCompatActivity {
         ButterKnife.bind(this);
         Intent intent = getIntent();
         flag = intent.getBooleanExtra("toolbar_title", true);
-        if(flag){
-            toolbar.setTitle(R.string.course_new);
-        } else {
-            toolbar.setTitle(R.string.course_edit);
-        }
+        toolbar.setTitle(flag ? R.string.course_new : R.string.course_edit);
         setSupportActionBar(toolbar);
-
 
         toolbar.setNavigationOnClickListener(v -> onBackPressed());
         toolbar.setOnMenuItemClickListener(menuItem -> {
-            if(menuItem.getItemId()==R.id.action_confirm){
+            if (menuItem.getItemId() == R.id.action_confirm) {
                 //TODO Actions after confirm
 
                 onBackPressed();
                 return true;
             }
-            if(menuItem.getItemId()==R.id.action_delete_forever){
+            if (menuItem.getItemId() == R.id.action_delete_forever) {
                 new AlertDialog.Builder(this)
                         .setTitle(R.string.alert_title)
                         .setMessage(R.string.alert_title)
@@ -52,7 +47,7 @@ public class CourseActivity extends AppCompatActivity {
                             onBackPressed();
                         })
                         .show();
-                        return true;
+                return true;
             }
             return false;
         });
@@ -63,11 +58,7 @@ public class CourseActivity extends AppCompatActivity {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_course, menu);
         MenuItem deleteAction = menu.findItem(R.id.action_delete_forever);
-        if(flag){
-            deleteAction.setVisible(false);
-        } else {
-            deleteAction.setVisible(true);
-        }
+        deleteAction.setVisible(!flag);
         return true;
     }
 }
