@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    android:title="@string/settings_title">
+    <PreferenceCategory android:title="@string/settings_category_user">
+        <EditTextPreference
+            android:id="@+id/settings_user"
+            android:inputType="text"
+            android:maxLines="1"
+            android:hint="@string/settings_user_hint"
+            android:summary="@string/settings_user_hint"
+            android:title="@string/settings_user_title"/>
+
+        <EditTextPreference
+            android:id="@+id/settings_password"
+            android:inputType="textPassword"
+            android:password="true"
+            android:maxLines="1"
+            android:hint="@string/settings_password_hint"
+            android:summary="@string/settings_password_hint"
+            android:title="@string/settings_password_title"/>
+    </PreferenceCategory>
+
+    <PreferenceCategory android:title="@string/settings_category_language">
+
+    </PreferenceCategory>
+
+    <PreferenceCategory android:title="@string/settings_category_about">
+        <Preference
+            android:title="@string/settings_about_title"
+            android:summary="@string/settings_about_content"/>
+
+        <Preference
+            android:title="@string/settings_version_title"
+            android:summary="@string/version"/>
+    </PreferenceCategory>
+
+</PreferenceScreen>

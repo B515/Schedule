@@ -15,6 +15,19 @@
     <string name="course_edit">Edit Course</string>
     <string name="course_new">New Course</string>
 
+    <string name="settings_about_content">2333</string>
+    <string name="settings_about_title">About us</string>
+    <string name="settings_category_about">About</string>
+    <string name="settings_category_language">Language</string>
+    <string name="settings_category_user">User Settings</string>
+    <string name="settings_password_hint">Enter password here</string>
+    <string name="settings_password_title">Password</string>
+    <string name="settings_title">Settings</string>
+    <string name="settings_user_hint">Enter user name here</string>
+    <string name="settings_user_title">User Number</string>
+    <string name="settings_version_title">Version</string>
+    <string name="version">v0.4</string>
+
     <string name="table_mon">Mon</string>
     <string name="table_tue">Tue</string>
     <string name="table_wed">Wed</string>
@@ -22,5 +35,17 @@
     <string name="table_fri">Fri</string>
     <string name="table_sat">Sat</string>
     <string name="table_sun">Sun</string>
+    <string name="table_1">CL1 st</string>
+    <string name="table_2">CL2 nd</string>
+    <string name="table_3">CL3 rd</string>
+    <string name="table_4">CL4 th</string>
+    <string name="table_5">CL5 th</string>
+    <string name="table_6">CL6 th</string>
+    <string name="table_7">CL7 th</string>
+    <string name="table_8">CL8 th</string>
+    <string name="table_9">CL9 th</string>
+    <string name="table_10">CL10th</string>
+    <string name="table_11">CL11th</string>
+    <string name="table_12">CL12th</string>
 
 </resources>
