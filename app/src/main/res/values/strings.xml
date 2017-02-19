@@ -26,7 +26,6 @@
     <string name="settings_user_hint">Enter user name here</string>
     <string name="settings_user_title">User Number</string>
     <string name="settings_version_title">Version</string>
-    <string name="version">v0.4</string>
 
     <string name="table_mon">Mon</string>
     <string name="table_tue">Tue</string>

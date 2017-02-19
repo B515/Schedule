@@ -4,6 +4,7 @@
     <PreferenceCategory android:title="@string/settings_category_user">
         <EditTextPreference
             android:id="@+id/settings_user"
+            android:key="settings_user"
             android:inputType="text"
             android:maxLines="1"
             android:hint="@string/settings_user_hint"
@@ -12,6 +13,7 @@
 
         <EditTextPreference
             android:id="@+id/settings_password"
+            android:key="settings_password"
             android:inputType="textPassword"
             android:password="true"
             android:maxLines="1"
@@ -31,7 +33,7 @@
 
         <Preference
             android:title="@string/settings_version_title"
-            android:summary="@string/version"/>
+            android:key="settings_version"/>
     </PreferenceCategory>
 
 </PreferenceScreen>
