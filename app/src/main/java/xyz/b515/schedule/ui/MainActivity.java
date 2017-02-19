@@ -2,7 +2,9 @@ package xyz.b515.schedule.ui;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -31,6 +33,7 @@ import xyz.b515.schedule.util.CourseParser;
 
 public class MainActivity extends AppCompatActivity {
     private CoordinatorLayout coordinatorLayout;
+    private SharedPreferences prefs;
     private ProgressDialog progressDialog;
     Disposable disposable;
 
@@ -41,12 +44,13 @@ public class MainActivity extends AppCompatActivity {
         coordinatorLayout = ButterKnife.findById(this, R.id.coordinator);
         Toolbar toolbar = ButterKnife.findById(this, R.id.toolbar);
         setSupportActionBar(toolbar);
+        prefs = PreferenceManager.getDefaultSharedPreferences(this);
 
         FloatingActionButton fab = ButterKnife.findById(this, R.id.fab);
         fab.setOnClickListener(view -> {
             Snackbar.make(view, "ZeroGo Yoosee!!!", Snackbar.LENGTH_LONG)
                     .setAction("Action", null).show();
-            getCourses("", ""); //TODO get user password from preferences
+            getCourses(prefs.getString("settings_user", null), prefs.getString("settings_password", null));
         });
     }
 
