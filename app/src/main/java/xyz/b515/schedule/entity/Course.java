@@ -1,7 +1,5 @@
 package xyz.b515.schedule.entity;
 
-import android.graphics.Color;
-
 import com.j256.ormlite.field.DatabaseField;
 import com.j256.ormlite.table.DatabaseTable;
 
@@ -18,12 +16,12 @@ public class Course {
     @DatabaseField String location;
     @DatabaseField boolean oddWeek = false;
     @DatabaseField boolean evenWeek = false;
-    @DatabaseField Color color;
+    @DatabaseField int color;
 
     public Course() {
     }
 
-    public Course(int id, int weekday, int startTime, int endTime, int startWeek, int endWeek, String name, String teacher, String location, boolean oddWeek, boolean evenWeek, Color color) {
+    public Course(int id, int weekday, int startTime, int endTime, int startWeek, int endWeek, String name, String teacher, String location, boolean oddWeek, boolean evenWeek, int color) {
         this.id = id;
         this.weekday = weekday;
         this.startTime = startTime;
@@ -38,7 +36,7 @@ public class Course {
         this.color = color;
     }
 
-    public Color getColor() {
+    public int getColor() {
         return color;
     }
 
@@ -131,8 +129,25 @@ public class Course {
         this.evenWeek = evenWeek;
     }
 
-    public void setColor(Color color) {
+    public void setColor(int color) {
         this.color = color;
     }
 
+    @Override
+    public String toString() {
+        return "Course{" +
+                "id=" + id +
+                ", weekday=" + weekday +
+                ", startTime=" + startTime +
+                ", endTime=" + endTime +
+                ", startWeek=" + startWeek +
+                ", endWeek=" + endWeek +
+                ", name='" + name + '\'' +
+                ", teacher='" + teacher + '\'' +
+                ", location='" + location + '\'' +
+                ", oddWeek=" + oddWeek +
+                ", evenWeek=" + evenWeek +
+                ", color=" + color +
+                '}';
+    }
 }

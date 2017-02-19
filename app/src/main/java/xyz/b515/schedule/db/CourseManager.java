@@ -16,6 +16,16 @@ public class CourseManager {
         this.dbHelper = new DBHelper(context);
     }
 
+    public boolean insertCourse(List<Course> courses) {
+        try {
+            dbHelper.getCourseDao().create(courses);
+            return true;
+        } catch (Exception e) {
+            Log.e(TAG, "insertCourse", e);
+        }
+        return false;
+    }
+
     public boolean insertCourse(Course course) {
         try {
             dbHelper.getCourseDao().create(course);

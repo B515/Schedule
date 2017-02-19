@@ -1,11 +1,16 @@
 package xyz.b515.schedule.util;
 
+import android.graphics.Color;
+
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
+import org.jsoup.nodes.TextNode;
 import org.jsoup.select.Elements;
 
 import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -17,27 +22,35 @@ public class CourseParser {
     public static ArrayList<Course> parse(String text) {
         ArrayList<Course> list = new ArrayList<>();
         Document document = Jsoup.parse(text);
-        Elements courses = document.getElementById("Table1").getElementsContainingText("周");
+        Elements courses = document.getElementById("Table1").getElementsByTag("td");
         for (Element td : courses) {
-            String[] data = td.text().split("<br>");
+            if (!td.text().contains("周"))
+                continue;
+            List<TextNode> nodes =td.textNodes();
             Course course = new Course();
-            course.setName(data[0]);
+            course.setName(nodes.get(0).text());
 
-            Matcher m = weekdayTimePattern.matcher(data[1]);
-            course.setWeekday(translateWeekday(m.group(0)));
-            String[] weeks = m.group(1).split(",");
-            course.setStartTime(Integer.parseInt(weeks[0]));
-            course.setEndTime(Integer.parseInt(weeks[weeks.length - 1]));
-            course.setStartWeek(Integer.parseInt(m.group(2)));
-            course.setEndWeek(Integer.parseInt(m.group(3)));
+            Matcher m = weekdayTimePattern.matcher(nodes.get(1).text());
+            if (m.find()) {
+                course.setWeekday(translateWeekday(m.group(1)));
+                String[] weeks = m.group(2).split(",");
+                course.setStartTime(Integer.parseInt(weeks[0]));
+                course.setEndTime(Integer.parseInt(weeks[weeks.length - 1]));
+                course.setStartWeek(Integer.parseInt(m.group(3)));
+                course.setEndWeek(Integer.parseInt(m.group(4)));
+            }
+            //TODO 数据通信原理 {第1-16周|2节/周}
 
-            course.setTeacher(data[2]);
-            course.setLocation(data[3]);
+            course.setTeacher(nodes.get(2).text());
+            course.setLocation(nodes.get(3).text());
             if (text.contains("单周")) {
                 course.setOddWeek(true);
             } else if (text.contains("双周")) {
                 course.setEvenWeek(true);
             }
+
+            Random rnd = new Random();
+            course.setColor(Color.argb(255, rnd.nextInt(256), rnd.nextInt(256), rnd.nextInt(256)));
 
             list.add(course);
         }
