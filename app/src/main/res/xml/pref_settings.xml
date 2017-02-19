@@ -4,19 +4,21 @@
     <PreferenceCategory android:title="@string/settings_category_user">
         <EditTextPreference
             android:id="@+id/settings_user"
-            android:key="settings_user"
+            android:key="user"
             android:inputType="text"
             android:maxLines="1"
+            android:selectAllOnFocus="true"
             android:hint="@string/settings_user_hint"
             android:summary="@string/settings_user_hint"
             android:title="@string/settings_user_title"/>
 
         <EditTextPreference
             android:id="@+id/settings_password"
-            android:key="settings_password"
+            android:key="password"
             android:inputType="textPassword"
             android:password="true"
             android:maxLines="1"
+            android:selectAllOnFocus="true"
             android:hint="@string/settings_password_hint"
             android:summary="@string/settings_password_hint"
             android:title="@string/settings_password_title"/>
@@ -33,7 +35,7 @@
 
         <Preference
             android:title="@string/settings_version_title"
-            android:key="settings_version"/>
+            android:key="version"/>
     </PreferenceCategory>
 
 </PreferenceScreen>

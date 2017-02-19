@@ -48,9 +48,7 @@ public class MainActivity extends AppCompatActivity {
 
         FloatingActionButton fab = ButterKnife.findById(this, R.id.fab);
         fab.setOnClickListener(view -> {
-            Snackbar.make(view, "ZeroGo Yoosee!!!", Snackbar.LENGTH_LONG)
-                    .setAction("Action", null).show();
-            getCourses(prefs.getString("settings_user", null), prefs.getString("settings_password", null));
+            getCourses(prefs.getString("user", null), prefs.getString("password", null));
         });
     }
 
