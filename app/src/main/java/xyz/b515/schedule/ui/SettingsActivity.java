@@ -32,9 +32,12 @@ public class SettingsActivity extends AppCompatActivity {
         Preference versionPreference;
         private static Preference.OnPreferenceChangeListener onPreferenceChangeListener = (preference, newValue) -> {
             String value = newValue.toString();
-            preference.setSummary(value);
             if (preference.getKey().equals("password")) {
                 preference.setSummary("********");
+            } else if (value.isEmpty()) {
+                preference.setSummary("Nothing");
+            } else {
+                preference.setSummary(value);
             }
             return true;
         };

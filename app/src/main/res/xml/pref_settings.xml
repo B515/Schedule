@@ -1,48 +1,57 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
-    android:title="@string/settings_title">
+                  android:title="@string/settings_title">
     <PreferenceCategory android:title="@string/settings_category_user">
         <EditTextPreference
             android:id="@+id/settings_user"
-            android:key="user"
+            android:hint="@string/settings_user_hint"
             android:inputType="text"
+            android:key="user"
             android:maxLines="1"
             android:selectAllOnFocus="true"
-            android:hint="@string/settings_user_hint"
             android:summary="@string/settings_user_hint"
             android:title="@string/settings_user_title"/>
 
         <EditTextPreference
             android:id="@+id/settings_password"
-            android:key="password"
-            android:inputType="textPassword"
-            android:password="true"
-            android:maxLines="1"
-            android:selectAllOnFocus="true"
             android:hint="@string/settings_password_hint"
+            android:inputType="textPassword"
+            android:key="password"
+            android:maxLines="1"
+            android:password="true"
+            android:selectAllOnFocus="true"
             android:summary="@string/settings_password_hint"
             android:title="@string/settings_password_title"/>
     </PreferenceCategory>
 
+    <PreferenceCategory android:title="@string/settings_category_dlc">
+        <SwitchPreference
+            android:defaultValue="false"
+            android:enabled="false"
+            android:key="splash_screen"
+            android:summary="@string/settings_splash_screen_hint"
+            android:title="@string/settings_splash_screen_title"/>
+    </PreferenceCategory>
+
     <PreferenceCategory android:title="@string/settings_category_language">
-<!--
-        <ListPreference
-            android:key="language"
-            android:title="@string/settings_language_title"
-            android:summary="@string/settings_language_summary"
-            android:entries="@array/language"
-            android:entryValues="@array/language_value"/>
--->
+        <!--
+                <ListPreference
+                    android:key="language"
+                    android:title="@string/settings_language_title"
+                    android:summary="@string/settings_language_summary"
+                    android:entries="@array/language"
+                    android:entryValues="@array/language_value"/>
+        -->
     </PreferenceCategory>
 
     <PreferenceCategory android:title="@string/settings_category_about">
         <Preference
-            android:title="@string/settings_about_title"
-            android:summary="@string/settings_about_content"/>
+            android:summary="@string/settings_about_content"
+            android:title="@string/settings_about_title"/>
 
         <Preference
-            android:title="@string/settings_version_title"
-            android:key="version"/>
+            android:key="version"
+            android:title="@string/settings_version_title"/>
     </PreferenceCategory>
 
 </PreferenceScreen>
