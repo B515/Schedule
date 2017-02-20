@@ -28,7 +28,6 @@
     <PreferenceCategory android:title="@string/settings_category_dlc">
         <SwitchPreference
             android:defaultValue="false"
-            android:enabled="false"
             android:key="splash_screen"
             android:summary="@string/settings_splash_screen_hint"
             android:title="@string/settings_splash_screen_title"/>
