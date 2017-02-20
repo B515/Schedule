@@ -45,7 +45,8 @@
     <string name="settings_language_summary">在此改变你的语言</string>
     <string name="settings_language_title">切换语言</string>
     <string name="action_capture">捕捉</string>
-    <string name="settings_category_dlc">DLC</string>
-    <string name="settings_splash_screen_hint">为 ZeroGo Yoosee +1s!!!</string>
-    <string name="settings_splash_screen_title">启用启动画面（特别功能）</string>
+    <string name="settings_category_dlc">欢迎界面</string>
+    <string name="settings_splash_screen_hint">开启启动画面</string>
+    <string name="settings_splash_screen_title">启动画面（特别功能）</string>
+    <string name="app_designer">由GitHub上B515小组设计</string>
 </resources>
