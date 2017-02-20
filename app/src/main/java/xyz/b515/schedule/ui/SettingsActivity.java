@@ -24,8 +24,10 @@ public class SettingsActivity extends AppCompatActivity {
         setContentView(R.layout.activity_pref);
         getFragmentManager().beginTransaction().replace(R.id.content, new SettingsFragment()).commit();
         ButterKnife.bind(this);
+        toolbar.setTitle(R.string.settings_title);
         setSupportActionBar(toolbar);
         toolbar.setNavigationOnClickListener(v -> onBackPressed());
+
     }
 
     public static class SettingsFragment extends PreferenceFragment {
@@ -35,7 +37,7 @@ public class SettingsActivity extends AppCompatActivity {
         SwitchPreference splashScreenPreference;
         private static Preference.OnPreferenceChangeListener onPreferenceChangeListener = (preference, newValue) -> {
             String value = newValue.toString();
-            if (preference.getKey().equals("password")) {
+            if (preference.getKey().equals("password") && !value.isEmpty()) {
                 preference.setSummary("********");
             } else if (value.isEmpty()) {
                 preference.setSummary("Nothing");
