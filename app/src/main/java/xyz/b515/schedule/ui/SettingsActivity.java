@@ -37,10 +37,10 @@ public class SettingsActivity extends AppCompatActivity {
         SwitchPreference splashScreenPreference;
         private static Preference.OnPreferenceChangeListener onPreferenceChangeListener = (preference, newValue) -> {
             String value = newValue.toString();
-            if (preference.getKey().equals("password") && !value.isEmpty()) {
-                preference.setSummary("********");
-            } else if (value.isEmpty()) {
+            if (value.isEmpty()) {
                 preference.setSummary("Nothing");
+            } else if (preference.getKey().equals("password")) {
+                preference.setSummary("********");
             } else {
                 preference.setSummary(value);
             }
