@@ -5,6 +5,7 @@ import android.preference.EditTextPreference;
 import android.preference.Preference;
 import android.preference.PreferenceFragment;
 import android.preference.PreferenceManager;
+import android.preference.SwitchPreference;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 
@@ -12,6 +13,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import xyz.b515.schedule.BuildConfig;
 import xyz.b515.schedule.R;
+import xyz.b515.schedule.util.PackageHelper;
 
 public class SettingsActivity extends AppCompatActivity {
     @BindView(R.id.settings_toolbar) Toolbar toolbar;
@@ -30,6 +32,7 @@ public class SettingsActivity extends AppCompatActivity {
         EditTextPreference userNamePreference;
         EditTextPreference psdNamePreference;
         Preference versionPreference;
+        SwitchPreference splashScreenPreference;
         private static Preference.OnPreferenceChangeListener onPreferenceChangeListener = (preference, newValue) -> {
             String value = newValue.toString();
             if (preference.getKey().equals("password")) {
@@ -50,11 +53,16 @@ public class SettingsActivity extends AppCompatActivity {
             userNamePreference = (EditTextPreference) findPreference("user");
             psdNamePreference = (EditTextPreference) findPreference("password");
             versionPreference = findPreference("version");
+            splashScreenPreference = (SwitchPreference) findPreference("splash_screen");
 
             versionPreference.setSummary(BuildConfig.VERSION_NAME);
 
             bindPreferenceSummaryToValue(userNamePreference);
             bindPreferenceSummaryToValue(psdNamePreference);
+            splashScreenPreference.setOnPreferenceChangeListener((preference, boo) -> {
+                PackageHelper.changeMain(this.getContext(), (boolean) boo);
+                return true;
+            });
         }
 
         private static void bindPreferenceSummaryToValue(Preference preference) {
