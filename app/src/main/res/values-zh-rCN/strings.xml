@@ -42,4 +42,7 @@
     <string name="table_7">第7节</string>
     <string name="table_8">第8节</string>
     <string name="table_9">第9节</string>
+    <string name="settings_language_summary">在此改变你的语言</string>
+    <string name="settings_language_title">切换语言</string>
+    <string name="action_capture">捕捉</string>
 </resources>

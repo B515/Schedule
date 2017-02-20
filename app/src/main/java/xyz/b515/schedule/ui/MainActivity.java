@@ -81,6 +81,10 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
             break;
+            case R.id.action_capture: {
+
+            }
+            break;
         }
         //noinspection SimplifiableIfStatement
 
