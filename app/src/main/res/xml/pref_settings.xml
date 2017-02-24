@@ -31,6 +31,10 @@
             android:key="splash_screen"
             android:summary="@string/settings_splash_screen_hint"
             android:title="@string/settings_splash_screen_title"/>
+        <Preference
+            android:key="theme"
+            android:summary="@string/settings_theme_hint"
+            android:title="@string/settings_theme_title"/>
     </PreferenceCategory>
 
     <PreferenceCategory android:title="@string/settings_category_language">

@@ -9,74 +9,11 @@
     tools:showIn="@layout/activity_main">
 
     <GridLayout
+        android:id="@+id/main_grid"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:columnCount="8"
         android:rowCount="13">
-
-        <TextView
-            android:layout_width="@dimen/table_width"
-            android:layout_column="1"
-            android:layout_row="0"
-            android:gravity="center_horizontal"
-            android:text="@string/table_mon"
-            android:textColor="@android:color/black"
-            android:textSize="@dimen/table_textSize"/>
-
-        <TextView
-            android:layout_width="@dimen/table_width"
-            android:layout_column="2"
-            android:layout_row="0"
-            android:gravity="center_horizontal"
-            android:text="@string/table_tue"
-            android:textColor="@android:color/black"
-            android:textSize="@dimen/table_textSize"/>
-
-        <TextView
-            android:layout_width="@dimen/table_width"
-            android:layout_column="3"
-            android:layout_row="0"
-            android:gravity="center_horizontal"
-            android:text="@string/table_wed"
-            android:textColor="@android:color/black"
-            android:textSize="@dimen/table_textSize"/>
-
-        <TextView
-            android:layout_width="@dimen/table_width"
-            android:layout_column="4"
-            android:layout_row="0"
-            android:gravity="center_horizontal"
-            android:text="@string/table_thu"
-            android:textColor="@android:color/black"
-            android:textSize="@dimen/table_textSize"/>
-
-        <TextView
-            android:layout_width="@dimen/table_width"
-            android:layout_column="5"
-            android:layout_row="0"
-            android:gravity="center_horizontal"
-            android:text="@string/table_fri"
-            android:textColor="@android:color/black"
-            android:textSize="@dimen/table_textSize"/>
-
-        <TextView
-            android:layout_width="@dimen/table_width"
-            android:layout_column="6"
-            android:layout_row="0"
-            android:gravity="center_horizontal"
-            android:text="@string/table_sat"
-            android:textColor="@android:color/black"
-            android:textSize="@dimen/table_textSize"/>
-
-        <TextView
-            android:layout_width="@dimen/table_width"
-            android:layout_column="7"
-            android:layout_row="0"
-            android:gravity="center_horizontal"
-            android:text="@string/table_sun"
-            android:textColor="@android:color/black"
-            android:textSize="@dimen/table_textSize"/>
-
     </GridLayout>
 
 </android.support.design.widget.CoordinatorLayout>

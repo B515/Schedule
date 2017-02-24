@@ -20,38 +20,38 @@
     <string name="settings_about_content">2333</string>
     <string name="settings_about_title">About us</string>
     <string name="settings_category_about">About</string>
-    <string name="settings_category_dlc">Splash</string>
+    <string name="settings_category_dlc">DLC</string>
     <string name="settings_category_language">Language</string>
     <string name="settings_category_user">User Settings</string>
+    <string name="settings_empty">Empty</string>
     <string name="settings_language_title">Change language</string>
     <string name="settings_language_summary">Select your language here</string>
     <string name="settings_password_hint">Enter password here</string>
+    <string name="settings_password_mask" translatable="false">********</string>
     <string name="settings_password_title">Password</string>
     <string name="settings_splash_screen_hint">Enable splash screen</string>
     <string name="settings_splash_screen_title">Splash screen (Bonus Feature)</string>
     <string name="settings_title">Settings</string>
+    <string name="settings_theme_title">Themes</string>
+    <string name="settings_theme_hint">Setup theme</string>
     <string name="settings_user_hint">Enter user name here</string>
     <string name="settings_user_title">User Number</string>
     <string name="settings_version_title">Version</string>
 
-    <string name="table_mon">Mon</string>
-    <string name="table_tue">Tue</string>
-    <string name="table_wed">Wed</string>
-    <string name="table_thu">Thu</string>
-    <string name="table_fri">Fri</string>
-    <string name="table_sat">Sat</string>
-    <string name="table_sun">Sun</string>
-    <string name="table_1">CL 1st</string>
-    <string name="table_2">CL 2nd</string>
-    <string name="table_3">CL 3rd</string>
-    <string name="table_4">CL 4th</string>
-    <string name="table_5">CL 5th</string>
-    <string name="table_6">CL 6th</string>
-    <string name="table_7">CL 7th</string>
-    <string name="table_8">CL 8th</string>
-    <string name="table_9">CL 9th</string>
-    <string name="table_10">CL10th</string>
-    <string name="table_11">CL11th</string>
-    <string name="table_12">CL12th</string>
+    <string name="theme_tick" translatable="false">✓</string>
+    <string name="theme_title">Theme</string>
+    <string name="theme_using">Using</string>
+    <string name="theme_use">Use</string>
+    <string name="theme_purple_zero">ZeroGo Purple</string>
+    <string name="theme_blue">Blue</string>
+    <string name="theme_red">Red</string>
+    <string name="theme_purple">Purple</string>
+    <string name="theme_orange">Orange</string>
+    <string name="theme_pink">Pink</string>
+    <string name="theme_green">Green</string>
+    <string name="theme_teal">Teal</string>
+    <string name="theme_indigo">Indigo</string>
+    <string name="theme_black">Black</string>
+    <string name="theme_green_yun">Yun Green</string>
 
 </resources>

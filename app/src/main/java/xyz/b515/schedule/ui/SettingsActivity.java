@@ -1,5 +1,6 @@
 package xyz.b515.schedule.ui;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.preference.EditTextPreference;
 import android.preference.Preference;
@@ -24,10 +25,8 @@ public class SettingsActivity extends AppCompatActivity {
         setContentView(R.layout.activity_pref);
         getFragmentManager().beginTransaction().replace(R.id.content, new SettingsFragment()).commit();
         ButterKnife.bind(this);
-        toolbar.setTitle(R.string.settings_title);
         setSupportActionBar(toolbar);
         toolbar.setNavigationOnClickListener(v -> onBackPressed());
-
     }
 
     public static class SettingsFragment extends PreferenceFragment {
@@ -35,12 +34,13 @@ public class SettingsActivity extends AppCompatActivity {
         EditTextPreference psdNamePreference;
         Preference versionPreference;
         SwitchPreference splashScreenPreference;
+        Preference themePreference;
         private static Preference.OnPreferenceChangeListener onPreferenceChangeListener = (preference, newValue) -> {
             String value = newValue.toString();
             if (value.isEmpty()) {
-                preference.setSummary("Nothing");
+                preference.setSummary(R.string.settings_empty);
             } else if (preference.getKey().equals("password")) {
-                preference.setSummary("********");
+                preference.setSummary(R.string.settings_password_mask);
             } else {
                 preference.setSummary(value);
             }
@@ -56,6 +56,7 @@ public class SettingsActivity extends AppCompatActivity {
             psdNamePreference = (EditTextPreference) findPreference("password");
             versionPreference = findPreference("version");
             splashScreenPreference = (SwitchPreference) findPreference("splash_screen");
+            themePreference = findPreference("theme");
 
             versionPreference.setSummary(BuildConfig.VERSION_NAME);
 
@@ -63,6 +64,10 @@ public class SettingsActivity extends AppCompatActivity {
             bindPreferenceSummaryToValue(psdNamePreference);
             splashScreenPreference.setOnPreferenceChangeListener((preference, boo) -> {
                 PackageHelper.changeMain(this.getContext(), (boolean) boo);
+                return true;
+            });
+            themePreference.setOnPreferenceClickListener(preference -> {
+                this.getContext().startActivity(new Intent(this.getContext(), ThemeActivity.class));
                 return true;
             });
         }
