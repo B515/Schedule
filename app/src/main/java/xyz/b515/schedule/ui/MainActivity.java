@@ -11,8 +11,11 @@ import android.support.design.widget.Snackbar;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.GridLayout;
+import android.widget.TextView;
 
 import java.util.HashMap;
 import java.util.List;
@@ -50,6 +53,8 @@ public class MainActivity extends AppCompatActivity {
         fab.setOnClickListener(view -> {
             getCourses(prefs.getString("user", null), prefs.getString("password", null));
         });
+
+        addViews();
     }
 
     @Override
@@ -91,6 +96,32 @@ public class MainActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
+    private void addViews() {
+        GridLayout gridLayout = (GridLayout) findViewById(R.id.main_grid);
+        int column = 8;
+        int row = 13;
+        for (int i = 1; i < column; i++) {
+            TextView textView = new TextView(this);
+            textView.setGravity(Gravity.CENTER_HORIZONTAL | Gravity.TOP);
+            textView.setText(getResources().getStringArray(R.array.weekdays)[i - 1]);
+
+            GridLayout.Spec rowSpan = GridLayout.spec(0, 1);
+            GridLayout.Spec colSpan = GridLayout.spec(i, 1);
+            GridLayout.LayoutParams gridParam = new GridLayout.LayoutParams(rowSpan, colSpan);
+            gridLayout.addView(textView, gridParam);
+        }
+        for (int i = 1; i < row; i++) {
+            TextView textView = new TextView(this);
+            textView.setGravity(Gravity.CENTER_HORIZONTAL | Gravity.TOP);
+            textView.setText(getResources().getStringArray(R.array.row)[i - 1]);
+
+            GridLayout.Spec rowSpan = GridLayout.spec(i, 1);
+            GridLayout.Spec colSpan = GridLayout.spec(0, 1);
+            GridLayout.LayoutParams gridParam = new GridLayout.LayoutParams(rowSpan, colSpan);
+            gridLayout.addView(textView, gridParam);
+        }
+    }
+
     private void getCourses(String user, String password) {
         if (disposable != null && !disposable.isDisposed())
             disposable.dispose();
@@ -103,7 +134,6 @@ public class MainActivity extends AppCompatActivity {
 
         Map<String, String> scheduleMap = new HashMap<>();
         scheduleMap.put("xh", user);
-        //scheduleMap.put("amp;name", "???");
         scheduleMap.put("gnmkdm", "N121603");
 
         final ZfService zfService = ZfRetrofit.getZfService();

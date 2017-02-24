@@ -13,4 +13,29 @@
         <item>2</item>
         <item>3</item>
     </array>
+
+    <string-array name="weekdays">
+        <item>Mon</item>
+        <item>Tue</item>
+        <item>Wed</item>
+        <item>Thu</item>
+        <item>Fri</item>
+        <item>Sat</item>
+        <item>Sun</item>
+    </string-array>
+
+    <string-array name="row">
+        <item>CL 1st</item>
+        <item>CL 2st</item>
+        <item>CL 3st</item>
+        <item>CL 4st</item>
+        <item>CL 5st</item>
+        <item>CL 6st</item>
+        <item>CL 7st</item>
+        <item>CL 8st</item>
+        <item>CL 9st</item>
+        <item>CL10st</item>
+        <item>CL11st</item>
+        <item>CL12st</item>
+    </string-array>
 </resources>
