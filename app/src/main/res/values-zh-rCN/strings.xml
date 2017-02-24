@@ -45,6 +45,6 @@
     <string name="theme_purple">紫</string>
     <string name="theme_red">红</string>
     <string name="theme_teal">青</string>
-    <string name="theme_purple_zero">ZeroGo 紫</string>
+    <string name="theme_violet_zero">ZeroGo 紫</string>
     <string name="theme_green_yun">Yun 绿</string>
 </resources>

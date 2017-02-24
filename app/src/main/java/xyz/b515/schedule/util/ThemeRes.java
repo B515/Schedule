@@ -6,7 +6,7 @@ import android.support.annotation.StyleRes;
 import xyz.b515.schedule.R;
 
 public enum ThemeRes {
-    PURPLE_ZERO(R.string.theme_purple_zero, R.style.ThemePurpleZero, R.color.purpleZero),
+    VIOLET_ZERO(R.string.theme_violet_zero, R.style.ThemeVioletZero, R.color.violetZero),
     GREEN_YUN(R.string.theme_green_yun,R.style.ThemeGreenYun,R.color.greenYun),
     BLUE(R.string.theme_blue, R.style.ThemeBlue, R.color.blue),
     RED(R.string.theme_red, R.style.ThemeRed, R.color.red),

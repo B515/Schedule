@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
-    android:background="@color/purpleZeroDark"
+    android:background="@color/violetZeroDark"
     android:orientation="vertical"
     tools:context="xyz.b515.schedule.ui.SplashActivity">
 

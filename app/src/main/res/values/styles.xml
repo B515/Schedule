@@ -12,9 +12,9 @@
 
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light"/>
 
-    <style name="ThemePurpleZero" parent="AppTheme">
-        <item name="colorPrimary">@color/purpleZero</item>
-        <item name="colorPrimaryDark">@color/purpleZeroDark</item>
+    <style name="ThemeVioletZero" parent="AppTheme">
+        <item name="colorPrimary">@color/violetZero</item>
+        <item name="colorPrimaryDark">@color/violetZeroDark</item>
     </style>
 
     <style name="ThemeGreenYun" parent="AppTheme">

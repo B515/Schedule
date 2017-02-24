@@ -3,8 +3,8 @@
     <color name="colorAccent">#FF4081</color>
     <color name="secondary_text">#757575</color>
 
-    <color name="purpleZero">#7878FF</color>
-    <color name="purpleZeroDark">#5555FF</color>
+    <color name="violetZero">#7878FF</color>
+    <color name="violetZeroDark">#5555FF</color>
     <color name="greenYun">#00cc69</color>
     <color name="greenYunDark">#00ad48</color>
     <color name="blue">#2196f3</color>
