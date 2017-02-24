@@ -63,11 +63,11 @@ public class SettingsActivity extends AppCompatActivity {
             bindPreferenceSummaryToValue(userNamePreference);
             bindPreferenceSummaryToValue(psdNamePreference);
             splashScreenPreference.setOnPreferenceChangeListener((preference, boo) -> {
-                PackageHelper.changeMain(this.getContext(), (boolean) boo);
+                PackageHelper.changeMain(getContext(), (boolean) boo);
                 return true;
             });
             themePreference.setOnPreferenceClickListener(preference -> {
-                this.getContext().startActivity(new Intent(this.getContext(), ThemeActivity.class));
+                getContext().startActivity(new Intent(getContext(), ThemeActivity.class));
                 return true;
             });
         }

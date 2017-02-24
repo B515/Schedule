@@ -12,7 +12,6 @@ import okhttp3.CookieJar;
 import okhttp3.Headers;
 import okhttp3.HttpUrl;
 import okhttp3.OkHttpClient;
-import okhttp3.Request;
 import retrofit2.Retrofit;
 import retrofit2.converter.scalars.ScalarsConverterFactory;
 
@@ -24,18 +23,10 @@ public class ZfRetrofit {
             .add("Accept-Encoding", "gzip, deflate, sdch")
             .add("Accept-Language", "zh-CN,en-US;q=0.8")
             .build();
-
-    private ZfRetrofit() {
-    }
-
     private static OkHttpClient httpClient = new OkHttpClient.Builder()
             .connectTimeout(10, TimeUnit.SECONDS)
             .readTimeout(10, TimeUnit.SECONDS)
-            .addInterceptor(chain -> {
-                Request.Builder builder = chain.request().newBuilder()
-                        .headers(headers);
-                return chain.proceed(builder.build());
-            })
+            .addInterceptor(chain -> chain.proceed(chain.request().newBuilder().headers(headers).build()))
             .cookieJar(new CookieJar() {
                 private final HashMap<String, List<Cookie>> cookieStore = new HashMap<>();
 
@@ -51,7 +42,6 @@ public class ZfRetrofit {
                 }
             })
             .build();
-
     private static ZfService zfService = new Retrofit.Builder()
             .baseUrl(server)
             .client(httpClient)
@@ -59,6 +49,9 @@ public class ZfRetrofit {
             .addConverterFactory(ScalarsConverterFactory.create())
             .build()
             .create(ZfService.class);
+
+    private ZfRetrofit() {
+    }
 
     public static ZfService getZfService() {
         return zfService;
