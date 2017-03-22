@@ -22,7 +22,6 @@ import java.util.List;
 import java.util.Map;
 
 import butterknife.ButterKnife;
-import io.reactivex.Observable;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.functions.Function;
@@ -138,11 +137,9 @@ public class MainActivity extends AppCompatActivity {
 
         final ZfService zfService = ZfRetrofit.getZfService();
         disposable = zfService.login(loginMap)
-                .flatMap(new Function<String, Observable<String>>() {
-                    public Observable<String> apply(String s) {
-                        //TODO check login state
-                        return zfService.getSchedule(scheduleMap);
-                    }
+                .flatMap(s -> {
+                    //TODO check login state
+                    return zfService.getSchedule(scheduleMap);
                 })
                 .map((Function<String, List<Course>>) CourseParser::parse)
                 .subscribeOn(Schedulers.io())
