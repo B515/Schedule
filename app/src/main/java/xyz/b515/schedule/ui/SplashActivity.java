@@ -9,7 +9,7 @@ import xyz.b515.schedule.R;
 
 public class SplashActivity extends AppCompatActivity {
 
-    private final int SPLASH_DISPLAY_LENGTH = 50;
+    private final int SPLASH_DISPLAY_LENGTH = 500;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
