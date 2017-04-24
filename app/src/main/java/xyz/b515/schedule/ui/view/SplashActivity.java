@@ -1,4 +1,4 @@
-package xyz.b515.schedule.ui;
+package xyz.b515.schedule.ui.view;
 
 import android.content.Intent;
 import android.os.Handler;

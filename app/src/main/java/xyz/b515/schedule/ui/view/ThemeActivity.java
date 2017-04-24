@@ -1,4 +1,4 @@
-package xyz.b515.schedule.ui;
+package xyz.b515.schedule.ui.view;
 
 import android.app.Activity;
 import android.content.res.Resources;
@@ -43,7 +43,7 @@ public class ThemeActivity extends AppCompatActivity {
 
         @Override
         public ThemeItemHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-            View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.theme_item, parent, false);
+            View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_theme, parent, false);
             return new ThemeItemHolder(view);
         }
 

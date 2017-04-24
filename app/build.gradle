@@ -1,4 +1,5 @@
 apply plugin: 'com.android.application'
+apply plugin: 'me.tatarka.retrolambda'
 
 android {
     compileSdkVersion 25
@@ -27,6 +28,9 @@ dependencies {
     compile 'com.android.support:design:25.3.1'
     compile 'io.reactivex.rxjava2:rxjava:2.0.6'
     compile 'io.reactivex.rxjava2:rxandroid:2.0.1'
+    compile 'info.android15.nucleus5:nucleus:5.0.0-beta1'
+    compile 'info.android15.nucleus5:nucleus-support-v4:5.0.0-beta1'
+    compile 'info.android15.nucleus5:nucleus-support-v7:5.0.0-beta1'
     compile 'com.squareup.okhttp3:okhttp:3.7.0'
     compile 'com.squareup.retrofit2:retrofit:2.2.0'
     compile 'com.squareup.retrofit2:converter-scalars:2.2.0'

@@ -47,4 +47,6 @@
     <string name="theme_teal">青</string>
     <string name="theme_violet_zero">ZeroGo 紫</string>
     <string name="theme_green_yun">Yun 绿</string>
+    <string name="main_week_courses">本周课表</string>
+    <string name="main_today_courses">今日课表</string>
 </resources>

@@ -6,7 +6,7 @@ import android.content.pm.PackageManager;
 
 public class PackageHelper {
     public static void changeMain(Context context, boolean splash) {
-        ComponentName splashActivity = new ComponentName(context, "xyz.b515.schedule.ui.SplashActivity");
+        ComponentName splashActivity = new ComponentName(context, "xyz.b515.schedule.ui.view.SplashActivity");
         ComponentName mainActivity = new ComponentName(context, "xyz.b515.schedule.ui.MainActivityAlias");
 
         PackageManager manager = context.getPackageManager();

@@ -8,7 +8,7 @@
     android:fitsSystemWindows="true"
     android:background="?attr/colorPrimaryDark"
     android:orientation="vertical"
-    tools:context="xyz.b515.schedule.ui.SplashActivity">
+    tools:context="xyz.b515.schedule.ui.view.SplashActivity">
 
     <TextView
         android:id="@+id/splash_tv_title"

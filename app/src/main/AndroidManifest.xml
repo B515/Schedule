@@ -15,37 +15,38 @@
         android:supportsRtl="true"
         android:theme="@style/ThemeVioletZero">
         <activity
-            android:name=".ui.MainActivity"
+            android:name=".ui.view.MainActivity"
             android:label="@string/app_name">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
-            </intent-filter>
-        </activity>
-        <activity
-            android:name=".ui.CourseActivity"/>
-        <activity
-            android:name=".ui.SettingsActivity"/>
-        <activity
-            android:name=".ui.ThemeActivity"/>
-        <activity
-            android:name=".ui.SplashActivity"
-            android:enabled="false"
-            android:label="@string/app_name">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
-                <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
 
         <activity-alias
-            android:name=".ui.MainActivityAlias"
+            android:name=".ui.view.MainActivityAlias"
             android:label="@string/app_name"
-            android:targetActivity=".ui.MainActivity">
+            android:targetActivity=".ui.view.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
+
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity-alias>
+
+        <activity android:name=".ui.view.CourseActivity"/>
+        <activity android:name=".ui.view.SettingsActivity"/>
+        <activity android:name=".ui.view.ThemeActivity"/>
+        <activity
+            android:name=".ui.view.SplashActivity"
+            android:enabled="false"
+            android:label="@string/app_name">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
+        </activity>
+        <activity android:name=".ui.view.AllCoursesActivity"/>
     </application>
 
 </manifest>
