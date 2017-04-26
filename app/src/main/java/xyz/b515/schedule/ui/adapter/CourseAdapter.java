@@ -34,9 +34,9 @@ public class CourseAdapter extends RecyclerView.Adapter<CourseAdapter.CourseView
     @Override
     public void onBindViewHolder(CourseViewHolder holder, int position) {
         holder.tvName.setText(items.get(position).getName());
-        holder.tvLocation.setText(items.get(position).getLocation());
+        //holder.tvLocation.setText(items.get(position).getLocation());
         holder.tvTeacher.setText(items.get(position).getTeacher());
-        holder.tvWeek.setText(String.valueOf(items.get(position).getWeekday()));
+        //holder.tvWeek.setText(String.valueOf(items.get(position).getWeekday()));
     }
 
     @Override

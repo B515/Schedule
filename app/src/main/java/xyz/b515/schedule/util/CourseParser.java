@@ -32,21 +32,21 @@ public class CourseParser {
 
             Matcher m = weekdayTimePattern.matcher(nodes.get(1).text());
             if (m.find()) {
-                course.setWeekday(translateWeekday(m.group(1)));
+                //course.setWeekday(translateWeekday(m.group(1)));
                 String[] weeks = m.group(2).split(",");
-                course.setStartTime(Integer.parseInt(weeks[0]));
-                course.setEndTime(Integer.parseInt(weeks[weeks.length - 1]));
-                course.setStartWeek(Integer.parseInt(m.group(3)));
-                course.setEndWeek(Integer.parseInt(m.group(4)));
+                //course.setStartTime(Integer.parseInt(weeks[0]));
+                //course.setEndTime(Integer.parseInt(weeks[weeks.length - 1]));
+                //course.setStartWeek(Integer.parseInt(m.group(3)));
+                //course.setEndWeek(Integer.parseInt(m.group(4)));
             }
             //TODO 数据通信原理 {第1-16周|2节/周}
 
             course.setTeacher(nodes.get(2).text());
-            course.setLocation(nodes.get(3).text());
+            //course.setLocation(nodes.get(3).text());
             if (text.contains("单周")) {
-                course.setOddWeek(true);
+                //course.setOddWeek(true);
             } else if (text.contains("双周")) {
-                course.setEvenWeek(true);
+                //course.setEvenWeek(true);
             }
 
             Random rnd = new Random();
