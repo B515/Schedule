@@ -8,11 +8,10 @@ import com.j256.ormlite.table.DatabaseTable;
 @DatabaseTable(tableName = "courses")
 public class Course {
     @DatabaseField(generatedId = true) int id;
-
     @DatabaseField String name;
     @DatabaseField String teacher;
     @DatabaseField int color;
-    @ForeignCollectionField() ForeignCollection<Spacetime> spacetimes;
+    @ForeignCollectionField(eager = true) ForeignCollection<Spacetime> spacetimes;
 
     public Course() {
     }

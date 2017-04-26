@@ -12,6 +12,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import xyz.b515.schedule.R;
 import xyz.b515.schedule.entity.Course;
+import xyz.b515.schedule.entity.Spacetime;
 
 /**
  * Created by Yun on 2017.4.24.
@@ -34,9 +35,9 @@ public class CourseAdapter extends RecyclerView.Adapter<CourseAdapter.CourseView
     @Override
     public void onBindViewHolder(CourseViewHolder holder, int position) {
         holder.tvName.setText(items.get(position).getName());
-        //holder.tvLocation.setText(items.get(position).getLocation());
+        holder.tvLocation.setText(((Spacetime)items.get(position).getSpacetimes().toArray()[0]).getLocation());
         holder.tvTeacher.setText(items.get(position).getTeacher());
-        //holder.tvWeek.setText(String.valueOf(items.get(position).getWeekday()));
+        holder.tvWeek.setText(String.valueOf(((Spacetime)items.get(position).getSpacetimes().toArray()[0]).getWeekday()));
     }
 
     @Override

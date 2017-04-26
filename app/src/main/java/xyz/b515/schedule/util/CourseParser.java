@@ -14,47 +14,62 @@ import java.util.Random;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import xyz.b515.schedule.db.CourseManager;
 import xyz.b515.schedule.entity.Course;
+import xyz.b515.schedule.entity.Spacetime;
 
 public class CourseParser {
     private static final Pattern weekdayTimePattern = Pattern.compile("周(.)第(.+)节\\{第(\\d+)-(\\d+)周\\}");
 
-    public static ArrayList<Course> parse(String text) {
-        ArrayList<Course> list = new ArrayList<>();
+    public static void parse(String text, CourseManager manager) {
+        ArrayList<String> names = new ArrayList<>();
+
         Document document = Jsoup.parse(text);
         Elements courses = document.getElementById("Table1").getElementsByTag("td");
         for (Element td : courses) {
             if (!td.text().contains("周"))
                 continue;
-            List<TextNode> nodes =td.textNodes();
-            Course course = new Course();
-            course.setName(nodes.get(0).text());
+            List<TextNode> nodes = td.textNodes();
+
+            String name = nodes.get(0).text();
+            Course course;
+            if (!names.contains(name)) {
+                names.add(name);
+
+                course = new Course();
+                course.setName(name);
+                course.setTeacher(nodes.get(2).text());
+                Random rnd = new Random();
+                course.setColor(Color.argb(255, rnd.nextInt(256), rnd.nextInt(256), rnd.nextInt(256)));
+
+                manager.insertCourse(course);
+            } else {
+                course = manager.getCourse(name);
+            }
+
+            Spacetime spacetime = new Spacetime();
+            spacetime.setCourse(course);
 
             Matcher m = weekdayTimePattern.matcher(nodes.get(1).text());
             if (m.find()) {
-                //course.setWeekday(translateWeekday(m.group(1)));
+                spacetime.setWeekday(translateWeekday(m.group(1)));
                 String[] weeks = m.group(2).split(",");
-                //course.setStartTime(Integer.parseInt(weeks[0]));
-                //course.setEndTime(Integer.parseInt(weeks[weeks.length - 1]));
-                //course.setStartWeek(Integer.parseInt(m.group(3)));
-                //course.setEndWeek(Integer.parseInt(m.group(4)));
+                spacetime.setStartTime(Integer.parseInt(weeks[0]));
+                spacetime.setEndTime(Integer.parseInt(weeks[weeks.length - 1]));
+                spacetime.setStartWeek(Integer.parseInt(m.group(3)));
+                spacetime.setEndWeek(Integer.parseInt(m.group(4)));
             }
             //TODO 数据通信原理 {第1-16周|2节/周}
 
-            course.setTeacher(nodes.get(2).text());
-            //course.setLocation(nodes.get(3).text());
+            spacetime.setLocation(nodes.get(3).text());
             if (text.contains("单周")) {
-                //course.setOddWeek(true);
+                spacetime.setOddWeek(true);
             } else if (text.contains("双周")) {
-                //course.setEvenWeek(true);
+                spacetime.setEvenWeek(true);
             }
 
-            Random rnd = new Random();
-            course.setColor(Color.argb(255, rnd.nextInt(256), rnd.nextInt(256), rnd.nextInt(256)));
-
-            list.add(course);
+            manager.insertSpacetime(spacetime);
         }
-        return list;
     }
 
     private static int translateWeekday(String s) {

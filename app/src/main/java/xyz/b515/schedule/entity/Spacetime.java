@@ -9,6 +9,7 @@ import com.j256.ormlite.table.DatabaseTable;
 
 @DatabaseTable(tableName = "spacetimes")
 public class Spacetime {
+    @DatabaseField(generatedId = true) int id;
     @DatabaseField int weekday;
     @DatabaseField int startTime;
     @DatabaseField int endTime;
@@ -17,6 +18,7 @@ public class Spacetime {
     @DatabaseField String location;
     @DatabaseField boolean oddWeek = false;
     @DatabaseField boolean evenWeek = false;
+    @DatabaseField(foreign = true, foreignAutoRefresh = true) Course course;
 
     public Spacetime() {
     }
@@ -94,5 +96,13 @@ public class Spacetime {
 
     public void setEvenWeek(boolean evenWeek) {
         this.evenWeek = evenWeek;
+    }
+
+    public Course getCourse() {
+        return course;
+    }
+
+    public void setCourse(Course course) {
+        this.course = course;
     }
 }

@@ -12,11 +12,13 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import xyz.b515.schedule.R;
 import xyz.b515.schedule.db.CourseManager;
+import xyz.b515.schedule.entity.Course;
 import xyz.b515.schedule.ui.adapter.CourseAdapter;
 
 /**
@@ -47,7 +49,9 @@ public class TodayCoursesFragment extends Fragment {
         recycler.addItemDecoration(dividerItemDecoration);
 
         manager = new CourseManager(getContext());
-        adapter.items.addAll(manager.getAllCourse());
+        List<Course> list = manager.getAllCourse();
+        if (list != null)
+            adapter.items.addAll(manager.getAllCourse());
         adapter.notifyDataSetChanged();
 
         return view;

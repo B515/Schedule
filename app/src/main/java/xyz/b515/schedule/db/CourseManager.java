@@ -6,6 +6,7 @@ import android.util.Log;
 import java.util.List;
 
 import xyz.b515.schedule.entity.Course;
+import xyz.b515.schedule.entity.Spacetime;
 
 public class CourseManager {
     private static final String TAG = "CourseManager";
@@ -45,12 +46,40 @@ public class CourseManager {
         return null;
     }
 
+    public Course getCourse(String name) {
+        try {
+            return dbHelper.getCourseDao().queryBuilder().where().eq("name", name).queryForFirst();
+        } catch (Exception e) {
+            Log.e(TAG, "getCourse", e);
+        }
+        return null;
+    }
+
+    public int updateCourse(Course course) {
+        try {
+            return dbHelper.getCourseDao().update(course);
+        } catch (Exception e) {
+            Log.e(TAG, "updateCourse", e);
+        }
+        return 0;
+    }
+
     public boolean clearCourse() {
         try {
             dbHelper.getCourseDao().deleteBuilder().delete();
             return true;
         } catch (Exception e) {
             Log.e(TAG, "clearCourse", e);
+        }
+        return false;
+    }
+
+    public boolean insertSpacetime(Spacetime spacetime) {
+        try {
+            dbHelper.getSpacetimeDao().create(spacetime);
+            return true;
+        } catch (Exception e) {
+            Log.e(TAG, "insertSpacetime", e);
         }
         return false;
     }

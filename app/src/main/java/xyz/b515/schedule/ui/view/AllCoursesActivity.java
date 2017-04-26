@@ -22,7 +22,6 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
-import io.reactivex.functions.Function;
 import io.reactivex.schedulers.Schedulers;
 import xyz.b515.schedule.R;
 import xyz.b515.schedule.api.ZfRetrofit;
@@ -50,7 +49,7 @@ public class AllCoursesActivity extends AppCompatActivity {
         toolbar.setNavigationOnClickListener(v -> onBackPressed());
 
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
-        fab.setOnClickListener(v->getCourses(prefs.getString("user", null), prefs.getString("password", null)));
+        fab.setOnClickListener(v -> getCourses(prefs.getString("user", null), prefs.getString("password", null)));
 
         LinearLayoutManager llm = new LinearLayoutManager(this);
         llm.setOrientation(LinearLayoutManager.VERTICAL);
@@ -61,8 +60,14 @@ public class AllCoursesActivity extends AppCompatActivity {
         DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(this, llm.getOrientation());
         recycler.addItemDecoration(dividerItemDecoration);
 
+        loadCourses();
+    }
+
+    private void loadCourses(){
         manager = new CourseManager(this);
-        adapter.items.addAll(manager.getAllCourse());
+        List<Course> list = manager.getAllCourse();
+        if (list != null)
+            adapter.items.addAll(manager.getAllCourse());
         adapter.notifyDataSetChanged();
     }
 
@@ -86,13 +91,13 @@ public class AllCoursesActivity extends AppCompatActivity {
                     //TODO check login state
                     return zfService.getSchedule(scheduleMap);
                 })
-                .map((Function<String, List<Course>>) CourseParser::parse)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(courses -> {
+                .subscribe(text -> {
                             CourseManager manager = new CourseManager(AllCoursesActivity.this);
                             manager.clearCourse();
-                            manager.insertCourse(courses);
+                            CourseParser.parse(text, manager);
+                            loadCourses();
                         },
                         throwable -> {
                             dismissProgressDialog();
