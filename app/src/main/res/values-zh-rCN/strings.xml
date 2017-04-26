@@ -49,4 +49,7 @@
     <string name="theme_green_yun">Yun 绿</string>
     <string name="main_week_courses">本周课表</string>
     <string name="main_today_courses">今日课表</string>
+    <string name="course_name">课程名称</string>
+    <string name="course_type">课程性质</string>
+    <string name="course_teacher">授课教师</string>
 </resources>

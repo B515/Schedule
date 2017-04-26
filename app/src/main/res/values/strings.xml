@@ -55,5 +55,8 @@
     <string name="theme_green_yun">Yun Green</string>
     <string name="main_today_courses">Today</string>
     <string name="main_week_courses">Week</string>
+    <string name="course_name">Course Name</string>
+    <string name="course_type">Course Type</string>
+    <string name="course_teacher">Teacher</string>
 
 </resources>
