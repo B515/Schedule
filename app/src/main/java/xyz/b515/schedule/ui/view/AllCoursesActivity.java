@@ -47,6 +47,7 @@ public class AllCoursesActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_all_cources);
         ButterKnife.bind(this);
+        toolbar.setNavigationOnClickListener(v -> onBackPressed());
 
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
         fab.setOnClickListener(v->getCourses(prefs.getString("user", null), prefs.getString("password", null)));
