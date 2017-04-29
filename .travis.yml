@@ -19,13 +19,14 @@ script:
   - "./gradlew assembleRelease"
 
 before_deploy:
-  - mv app/build/outputs/apk/app-release.apk app/build/outputs/apk/schedule.apk
+  - pwd
+  - ls app/build/outputs/apk/
 
 deploy:
   provider: releases
   api_key:
     secure: V9qevePq5MIZOS6uwGJ66om/XfBZcgdlMcwvHO/4UGcVGYtez/FyrKXNVq0YfZjnN/BVIzvthn5TzTb0rxeM/DO0XlsfmOqo/YWzTdVidZBLSpLLAYsh+9/nQd64HO6svQdIPq38htdHfSkBcXN6KDE9kTrgezi9tgYuXvzuWBPrwPZ5oOeykJRhQuEqFik7+LJVFkvsk5bn3O/CJic9Q2zZUXD7xwW82p5PFgpYrJ7juy7cPRc1JUIGAAc9RitoC37llUIxbezncC0ske0RrrWcLdtHR3QMKfJ9tqE0+ixhRm0lcf+e4Tf//0Yj4Q907GLaqy38QiNuxTSROHEI1ugabbz/RIHUzdTID/ZBb7dvbpi1Le9/76KaQ/El7CJfKsImkBl5Pww4VS/umdIXcmqw3IonCBGIzFNV8RA34LfTMyz4RdZmIvD8Vw/I8wSALhPgZ6Zfeari5NyA8u5egshd/EOB9CZB9WM8WW0C94tB+0w4wG7SmteJByqJxJU28OB8nn+BJvEu3pb2vbHMKj5d7V0vycT2TymRQxxNf3bfx5nOSF2CG+rv4O4mbJuKbkwuOtvdOQIA6fAwbrVwZhS17DqMd7eNEPV2EfI2q1kAa8UgcY0Rm/1YlKmXKywWIGEnuQXfFnd6TxUruTNnOFDKIIsDUX6dOTS0AbvNbvg=
-  file: app/build/outputs/apk/schedule.apk
+  file: app/build/outputs/apk/app-release.apk
   overwrite: true
   skip_cleanup: true
   on:
