@@ -37,7 +37,7 @@ public class CourseAdapter extends RecyclerView.Adapter<CourseAdapter.CourseView
         holder.tvName.setText(items.get(position).getName());
         holder.tvLocation.setText(((Spacetime)items.get(position).getSpacetimes().toArray()[0]).getLocation());
         holder.tvTeacher.setText(items.get(position).getTeacher());
-        holder.tvWeek.setText(String.valueOf(((Spacetime)items.get(position).getSpacetimes().toArray()[0]).getWeekday()));
+        holder.tvTime.setText(String.valueOf(((Spacetime)items.get(position).getSpacetimes().toArray()[0]).getWeekday()));
     }
 
     @Override
@@ -53,7 +53,7 @@ public class CourseAdapter extends RecyclerView.Adapter<CourseAdapter.CourseView
         @BindView(R.id.tv_name) TextView tvName;
         @BindView(R.id.tv_teacher) TextView tvTeacher;
         @BindView(R.id.tv_location) TextView tvLocation;
-        @BindView(R.id.tv_week) TextView tvWeek;
+        @BindView(R.id.tv_time) TextView tvTime;
 
         CourseViewHolder(View view) {
             super(view);

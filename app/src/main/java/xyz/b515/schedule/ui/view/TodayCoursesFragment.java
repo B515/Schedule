@@ -4,7 +4,6 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.DefaultItemAnimator;
-import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -45,8 +44,6 @@ public class TodayCoursesFragment extends Fragment {
         adapter = new CourseAdapter(new ArrayList<>());
         recycler.setAdapter(adapter);
         recycler.setItemAnimator(new DefaultItemAnimator());
-        DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(getContext(), llm.getOrientation());
-        recycler.addItemDecoration(dividerItemDecoration);
 
         manager = new CourseManager(getContext());
         List<Course> list = manager.getAllCourse();
