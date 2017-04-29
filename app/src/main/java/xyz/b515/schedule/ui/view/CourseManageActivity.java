@@ -1,6 +1,7 @@
 package xyz.b515.schedule.ui.view;
 
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
@@ -11,6 +12,8 @@ import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.view.Menu;
+import android.view.MenuItem;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -30,7 +33,7 @@ import xyz.b515.schedule.entity.Course;
 import xyz.b515.schedule.ui.adapter.CourseAdapter;
 import xyz.b515.schedule.util.CourseParser;
 
-public class AllCoursesActivity extends AppCompatActivity {
+public class CourseManageActivity extends AppCompatActivity {
 
     @BindView(R.id.toolbar) Toolbar toolbar;
     @BindView(R.id.recycler) RecyclerView recycler;
@@ -43,12 +46,17 @@ public class AllCoursesActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_all_cources);
+        setContentView(R.layout.activity_course_manage);
         ButterKnife.bind(this);
+        toolbar.setTitle(R.string.course_manage);
+        setSupportActionBar(toolbar);
         toolbar.setNavigationOnClickListener(v -> onBackPressed());
 
-        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
-        fab.setOnClickListener(v -> getCourses(prefs.getString("user", null), prefs.getString("password", null)));
+        fab.setOnClickListener(v -> {
+            Intent intent = new Intent(this, CourseDetailActivity.class);
+            intent.putExtra("toolbar_title", true);
+            startActivity(intent);
+        });
 
         LinearLayoutManager llm = new LinearLayoutManager(this);
         llm.setOrientation(LinearLayoutManager.VERTICAL);
@@ -60,7 +68,26 @@ public class AllCoursesActivity extends AppCompatActivity {
         loadCourses();
     }
 
-    private void loadCourses(){
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_course_manage, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+        switch (id) {
+            case R.id.action_import: {
+                SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
+                getCourses(prefs.getString("user", null), prefs.getString("password", null));
+            }
+            break;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+    private void loadCourses() {
         manager = new CourseManager(this);
         List<Course> list = manager.getAllCourse();
         if (list != null)
@@ -91,7 +118,7 @@ public class AllCoursesActivity extends AppCompatActivity {
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(text -> {
-                            CourseManager manager = new CourseManager(AllCoursesActivity.this);
+                            CourseManager manager = new CourseManager(CourseManageActivity.this);
                             manager.clearCourse();
                             CourseParser.parse(text, manager);
                             loadCourses();
@@ -103,7 +130,7 @@ public class AllCoursesActivity extends AppCompatActivity {
                             throwable.printStackTrace();
                         },
                         () -> dismissProgressDialog(),
-                        dis -> progressDialog = ProgressDialog.show(AllCoursesActivity.this, "Schedule", "Now loading...", true, true, dialogInterface -> dis.dispose()));
+                        dis -> progressDialog = ProgressDialog.show(CourseManageActivity.this, "Schedule", "Now loading...", true, true, dialogInterface -> dis.dispose()));
     }
 
     @Override

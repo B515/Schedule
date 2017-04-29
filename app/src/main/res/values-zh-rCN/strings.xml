@@ -52,4 +52,6 @@
     <string name="course_name">课程名称</string>
     <string name="course_type">课程性质</string>
     <string name="course_teacher">授课教师</string>
+    <string name="action_manage">管理课程</string>
+    <string name="course_manage">管理课程</string>
 </resources>

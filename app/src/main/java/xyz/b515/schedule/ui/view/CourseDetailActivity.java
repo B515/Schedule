@@ -12,14 +12,14 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import xyz.b515.schedule.R;
 
-public class CourseActivity extends AppCompatActivity {
+public class CourseDetailActivity extends AppCompatActivity {
     @BindView(R.id.course_toolbar) Toolbar toolbar;
     Boolean flag;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_course);
+        setContentView(R.layout.activity_course_detail);
         ButterKnife.bind(this);
         Intent intent = getIntent();
         flag = intent.getBooleanExtra("toolbar_title", true);
@@ -56,7 +56,7 @@ public class CourseActivity extends AppCompatActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_course, menu);
+        getMenuInflater().inflate(R.menu.menu_course_detail, menu);
         MenuItem deleteAction = menu.findItem(R.id.action_delete_forever);
         deleteAction.setVisible(!flag);
         return true;

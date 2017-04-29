@@ -33,7 +33,7 @@
             </intent-filter>
         </activity-alias>
 
-        <activity android:name=".ui.view.CourseActivity"/>
+        <activity android:name=".ui.view.CourseDetailActivity"/>
         <activity android:name=".ui.view.SettingsActivity"/>
         <activity android:name=".ui.view.ThemeActivity"/>
         <activity
@@ -46,7 +46,7 @@
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-        <activity android:name=".ui.view.AllCoursesActivity"/>
+        <activity android:name=".ui.view.CourseManageActivity"/>
     </application>
 
 </manifest>
