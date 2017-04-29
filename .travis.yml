@@ -26,4 +26,4 @@ deploy:
   overwrite: true
   skip_cleanup: true
   on:
-    repo: B515/Schedule
+    tags: true
