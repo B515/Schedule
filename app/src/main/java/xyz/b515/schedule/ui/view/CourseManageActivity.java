@@ -78,6 +78,11 @@ public class CourseManageActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
         switch (id) {
+            case R.id.action_clear: {
+                manager.clearCourse();
+                loadCourses();
+            }
+            break;
             case R.id.action_import: {
                 SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
                 getCourses(prefs.getString("user", null), prefs.getString("password", null));
@@ -88,6 +93,7 @@ public class CourseManageActivity extends AppCompatActivity {
     }
 
     private void loadCourses() {
+        adapter.items.clear();
         manager = new CourseManager(this);
         List<Course> list = manager.getAllCourse();
         if (list != null)
