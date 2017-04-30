@@ -57,7 +57,6 @@ public class CourseDetailActivity extends AppCompatActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_course_detail, menu);
         MenuItem deleteAction = menu.findItem(R.id.action_delete_forever);
         deleteAction.setVisible(!flag);

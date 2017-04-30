@@ -8,4 +8,6 @@ public class Constant {
 
     public static final String TOOLBAR_TITLE = "toolbar_title";
     public static final String COURSE_ID = "course_id";
+    public static final String CURRENT_WEEK = "current_week";
+    public static final String CURRENT_WEEK_OF_YEAR = "current_week_of_year";
 }
