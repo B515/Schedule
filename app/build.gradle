@@ -40,5 +40,6 @@ dependencies {
     compile 'org.jsoup:jsoup:1.10.2'
     compile 'com.j256.ormlite:ormlite-android:5.0'
     compile 'net.sourceforge.streamsupport:streamsupport:1.5.4'
+    compile 'com.jrummyapps:colorpicker:2.1.6'
     annotationProcessor 'com.jakewharton:butterknife-compiler:8.5.1'
 }

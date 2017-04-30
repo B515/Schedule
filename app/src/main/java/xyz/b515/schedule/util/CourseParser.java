@@ -9,6 +9,7 @@ import org.jsoup.nodes.TextNode;
 import org.jsoup.select.Elements;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 import java.util.Random;
 import java.util.regex.Matcher;
@@ -75,19 +76,19 @@ public class CourseParser {
     private static int translateWeekday(String s) {
         switch (s) {
             case "一":
-                return 1;
+                return Calendar.MONDAY;
             case "二":
-                return 2;
+                return Calendar.TUESDAY;
             case "三":
-                return 3;
+                return Calendar.WEDNESDAY;
             case "四":
-                return 4;
+                return Calendar.THURSDAY;
             case "五":
-                return 5;
+                return Calendar.FRIDAY;
             case "六":
-                return 6;
+                return Calendar.SATURDAY;
             case "日":
-                return 7;
+                return Calendar.SUNDAY;
         }
         return 0;
     }
