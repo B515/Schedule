@@ -61,5 +61,6 @@
     <string name="course_name">Course Name</string>
     <string name="course_type">Course Type</string>
     <string name="course_teacher">Teacher</string>
+    <string name="week_num">Week %d</string>
 
 </resources>

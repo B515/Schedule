@@ -55,4 +55,5 @@
     <string name="action_manage">管理课程</string>
     <string name="course_manage">管理课程</string>
     <string name="action_clear">清空</string>
+    <string name="week_num">第 %d 周</string>
 </resources>

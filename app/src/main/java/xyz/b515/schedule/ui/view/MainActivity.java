@@ -13,9 +13,16 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ArrayAdapter;
+import android.widget.Spinner;
+import android.widget.TextView;
+
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import java8.util.stream.Collectors;
+import java8.util.stream.RefStreams;
 import xyz.b515.schedule.R;
 
 public class MainActivity extends AppCompatActivity {
@@ -23,12 +30,15 @@ public class MainActivity extends AppCompatActivity {
     @BindView(R.id.view_pager) ViewPager viewPager;
     @BindView(R.id.toolbar) Toolbar toolbar;
     @BindView(R.id.fab) FloatingActionButton fab;
+    @BindView(R.id.title) TextView title;
+    @BindView(R.id.spinner) Spinner spinner;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
+        title.setText(R.string.app_name);
 
         setSupportActionBar(toolbar);
         fab.setOnClickListener(view -> {
@@ -37,6 +47,14 @@ public class MainActivity extends AppCompatActivity {
 
         viewPager.setAdapter(new CourseFragmentAdapter(getSupportFragmentManager()));
         tabLayout.setupWithViewPager(viewPager);
+
+        List<String> weeks = RefStreams.iterate(1, i -> i + 1)
+                .limit(20)
+                .map(i -> String.format(getResources().getString(R.string.week_num), i))
+                .collect(Collectors.toList());
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, R.layout.spinner_item, weeks);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinner.setAdapter(adapter);
     }
 
     @Override
