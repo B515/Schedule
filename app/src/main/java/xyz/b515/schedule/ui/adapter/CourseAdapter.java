@@ -1,5 +1,6 @@
 package xyz.b515.schedule.ui.adapter;
 
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,9 +14,11 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import java8.util.stream.Collectors;
 import java8.util.stream.StreamSupport;
+import xyz.b515.schedule.Constant;
 import xyz.b515.schedule.R;
 import xyz.b515.schedule.entity.Course;
 import xyz.b515.schedule.entity.Spacetime;
+import xyz.b515.schedule.ui.view.CourseDetailActivity;
 
 /**
  * Created by Yun on 2017.4.24.
@@ -46,6 +49,13 @@ public class CourseAdapter extends RecyclerView.Adapter<CourseAdapter.CourseView
                 .map(st -> weeks[st.getWeekday()] + " " + st.getStartTime() + "-" + st.getEndTime())
                 .collect(Collectors.joining(", "));
         holder.tvTime.setText(times);
+
+        holder.itemView.setOnClickListener(v -> {
+            Intent intent = new Intent(v.getContext(), CourseDetailActivity.class);
+            intent.putExtra(Constant.TOOLBAR_TITLE, false);
+            intent.putExtra(Constant.COURSE_ID, items.get(position).getId());
+            v.getContext().startActivity(intent);
+        });
     }
 
     @Override

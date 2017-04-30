@@ -25,6 +25,7 @@ import butterknife.ButterKnife;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.schedulers.Schedulers;
+import xyz.b515.schedule.Constant;
 import xyz.b515.schedule.R;
 import xyz.b515.schedule.api.ZfRetrofit;
 import xyz.b515.schedule.api.ZfService;
@@ -54,7 +55,7 @@ public class CourseManageActivity extends AppCompatActivity {
 
         fab.setOnClickListener(v -> {
             Intent intent = new Intent(this, CourseDetailActivity.class);
-            intent.putExtra("toolbar_title", true);
+            intent.putExtra(Constant.TOOLBAR_TITLE, true);
             startActivity(intent);
         });
 

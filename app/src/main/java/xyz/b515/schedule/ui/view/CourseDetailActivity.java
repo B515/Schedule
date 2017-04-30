@@ -10,6 +10,7 @@ import android.view.MenuItem;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import xyz.b515.schedule.Constant;
 import xyz.b515.schedule.R;
 
 public class CourseDetailActivity extends AppCompatActivity {
@@ -22,7 +23,8 @@ public class CourseDetailActivity extends AppCompatActivity {
         setContentView(R.layout.activity_course_detail);
         ButterKnife.bind(this);
         Intent intent = getIntent();
-        flag = intent.getBooleanExtra("toolbar_title", true);
+        flag = intent.getBooleanExtra(Constant.TOOLBAR_TITLE, true);
+        int courseId = intent.getIntExtra(Constant.COURSE_ID, 0);
         toolbar.setTitle(flag ? R.string.course_new : R.string.course_edit);
         setSupportActionBar(toolbar);
 
