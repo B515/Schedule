@@ -67,6 +67,7 @@ public class CourseManager {
     public boolean clearCourse() {
         try {
             dbHelper.getCourseDao().deleteBuilder().delete();
+            dbHelper.getSpacetimeDao().deleteBuilder().delete();
             return true;
         } catch (Exception e) {
             Log.e(TAG, "clearCourse", e);
@@ -82,5 +83,14 @@ public class CourseManager {
             Log.e(TAG, "insertSpacetime", e);
         }
         return false;
+    }
+
+    public int updateSpacetime(Spacetime spacetime) {
+        try {
+            return dbHelper.getSpacetimeDao().update(spacetime);
+        } catch (Exception e) {
+            Log.e(TAG, "updateSpacetime", e);
+        }
+        return 0;
     }
 }
