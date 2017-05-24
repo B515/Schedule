@@ -8,6 +8,12 @@
         android:title="@string/action_clear"
         app:showAsAction="ifRoom"/>
     <item
+        android:id="@+id/action_import_file"
+        android:icon="@drawable/ic_import_file_24dp"
+        android:orderInCategory="80"
+        android:title="@string/action_import_file"
+        app:showAsAction="ifRoom"/>
+    <item
         android:id="@+id/action_import"
         android:icon="@drawable/ic_import_24dp"
         android:orderInCategory="80"

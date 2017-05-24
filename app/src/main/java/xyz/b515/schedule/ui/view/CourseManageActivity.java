@@ -3,6 +3,7 @@ package xyz.b515.schedule.ui.view;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.net.Uri;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.design.widget.FloatingActionButton;
@@ -15,6 +16,8 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import java.io.File;
+import java.io.FileInputStream;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -33,6 +36,7 @@ import xyz.b515.schedule.db.CourseManager;
 import xyz.b515.schedule.entity.Course;
 import xyz.b515.schedule.ui.adapter.CourseAdapter;
 import xyz.b515.schedule.util.CourseParser;
+import xyz.b515.schedule.util.FileHelper;
 
 public class CourseManageActivity extends AppCompatActivity {
 
@@ -87,6 +91,10 @@ public class CourseManageActivity extends AppCompatActivity {
             case R.id.action_import: {
                 SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
                 getCourses(prefs.getString("user", null), prefs.getString("password", null));
+            }
+            break;
+            case R.id.action_import_file: {
+                showFileChooser();
             }
             break;
         }
@@ -153,4 +161,47 @@ public class CourseManageActivity extends AppCompatActivity {
             progressDialog.dismiss();
         }
     }
+
+    private static final int FILE_SELECT_CODE = 0;
+
+    private void showFileChooser() {
+        Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
+        intent.setType("*/*");
+        intent.addCategory(Intent.CATEGORY_OPENABLE);
+        try {
+            startActivityForResult(Intent.createChooser(intent, ""), FILE_SELECT_CODE);
+        } catch (Exception e) {
+        }
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        switch (requestCode) {
+            case FILE_SELECT_CODE:
+                if (resultCode == RESULT_OK) {
+                    try {
+                        Uri uri = data.getData();
+                        String path = FileHelper.getPath(this, uri);
+                        File file = new File(path);
+                        FileInputStream in = new FileInputStream(file);
+                        int length = (int) file.length();
+                        byte[] temp = new byte[length];
+                        in.read(temp, 0, length);
+                        String text = new String(temp, "gb2312");
+                        in.close();
+
+                        CourseManager manager = new CourseManager(CourseManageActivity.this);
+                        manager.clearCourse();
+                        CourseParser.parse(text, manager);
+                        loadCourses();
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                }
+                break;
+        }
+        super.onActivityResult(requestCode, resultCode, data);
+    }
+
+
 }
