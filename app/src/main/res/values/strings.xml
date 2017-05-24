@@ -62,5 +62,9 @@
     <string name="course_type">Course Type</string>
     <string name="course_teacher">Teacher</string>
     <string name="week_num">Week %d</string>
+    <string name="spacetime_start">Start Week</string>
+    <string name="spacetime_end">End Week</string>
+    <string name="spacetime_place">Place</string>
+    <string name="spacetime_delete">Delete</string>
 
 </resources>

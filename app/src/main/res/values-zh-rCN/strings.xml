@@ -56,4 +56,8 @@
     <string name="course_manage">管理课程</string>
     <string name="action_clear">清空</string>
     <string name="week_num">第 %d 周</string>
+    <string name="spacetime_start">起始周</string>
+    <string name="spacetime_end">截止周</string>
+    <string name="spacetime_place">地点</string>
+    <string name="spacetime_delete">删除</string>
 </resources>

@@ -7,4 +7,5 @@
     <dimen name="text_mini">16sp</dimen>
     <dimen name="text_margin">8dp</dimen>
     <dimen name="text_second_margin">32dp</dimen>
+    <dimen name="spacetime_length">30dp</dimen>
 </resources>
