@@ -45,6 +45,10 @@ public class ThemeHelper implements Application.ActivityLifecycleCallbacks {
         activity.finish();
     }
 
+    public void recreate(Activity activity){
+        StreamSupport.stream(activityList).filter(a -> a != activity).forEach(Activity::recreate);
+    }
+
     @Override
     public void onActivityCreated(Activity activity, Bundle bundle) {
         activityList.add(activity);

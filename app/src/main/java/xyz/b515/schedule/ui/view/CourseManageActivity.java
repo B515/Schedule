@@ -37,6 +37,7 @@ import xyz.b515.schedule.entity.Course;
 import xyz.b515.schedule.ui.adapter.CourseAdapter;
 import xyz.b515.schedule.util.CourseParser;
 import xyz.b515.schedule.util.FileHelper;
+import xyz.b515.schedule.util.ThemeHelper;
 
 public class CourseManageActivity extends AppCompatActivity {
 
@@ -154,6 +155,8 @@ public class CourseManageActivity extends AppCompatActivity {
         dismissProgressDialog();
         if (disposable != null && !disposable.isDisposed())
             disposable.dispose();
+        // This reloads MainActivity. Much easier.
+        ThemeHelper.getInstance().recreate(this);
     }
 
     private void dismissProgressDialog() {
