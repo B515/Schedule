@@ -4,8 +4,6 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -35,7 +33,6 @@ public class MainActivity extends AppCompatActivity {
     @BindView(R.id.tab_layout) TabLayout tabLayout;
     @BindView(R.id.view_pager) ViewPager viewPager;
     @BindView(R.id.toolbar) Toolbar toolbar;
-    @BindView(R.id.fab) FloatingActionButton fab;
     @BindView(R.id.title) TextView title;
     @BindView(R.id.spinner) Spinner spinner;
     SharedPreferences preferences;
@@ -50,9 +47,6 @@ public class MainActivity extends AppCompatActivity {
         checkCurrentWeek();
 
         setSupportActionBar(toolbar);
-        fab.setOnClickListener(view -> {
-            Snackbar.make(toolbar, "OK", Snackbar.LENGTH_SHORT);
-        });
 
         viewPager.setAdapter(new CourseFragmentAdapter(getSupportFragmentManager()));
         tabLayout.setupWithViewPager(viewPager);
