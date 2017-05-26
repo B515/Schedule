@@ -1,5 +1,6 @@
 package xyz.b515.schedule.ui.view;
 
+import android.Manifest;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -28,6 +29,8 @@ import butterknife.ButterKnife;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.schedulers.Schedulers;
+import permissions.dispatcher.NeedsPermission;
+import permissions.dispatcher.RuntimePermissions;
 import xyz.b515.schedule.Constant;
 import xyz.b515.schedule.R;
 import xyz.b515.schedule.api.ZfRetrofit;
@@ -39,6 +42,7 @@ import xyz.b515.schedule.util.CourseParser;
 import xyz.b515.schedule.util.FileHelper;
 import xyz.b515.schedule.util.ThemeHelper;
 
+@RuntimePermissions
 public class CourseManageActivity extends AppCompatActivity {
 
     @BindView(R.id.toolbar) Toolbar toolbar;
@@ -70,7 +74,11 @@ public class CourseManageActivity extends AppCompatActivity {
         adapter = new CourseAdapter(new ArrayList<>());
         recycler.setAdapter(adapter);
         recycler.setItemAnimator(new DefaultItemAnimator());
+    }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
         loadCourses();
     }
 
@@ -95,7 +103,7 @@ public class CourseManageActivity extends AppCompatActivity {
             }
             break;
             case R.id.action_import_file: {
-                showFileChooser();
+                CourseManageActivityPermissionsDispatcher.showFileChooserWithCheck(CourseManageActivity.this);
             }
             break;
         }
@@ -167,7 +175,8 @@ public class CourseManageActivity extends AppCompatActivity {
 
     private static final int FILE_SELECT_CODE = 0;
 
-    private void showFileChooser() {
+    @NeedsPermission(Manifest.permission.READ_EXTERNAL_STORAGE)
+    void showFileChooser() {
         Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
         intent.setType("*/*");
         intent.addCategory(Intent.CATEGORY_OPENABLE);
