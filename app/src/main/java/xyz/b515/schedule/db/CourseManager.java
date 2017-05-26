@@ -55,6 +55,15 @@ public class CourseManager {
         return null;
     }
 
+    public Course getCourse(int id) {
+        try {
+            return dbHelper.getCourseDao().queryForId(id);
+        } catch (Exception e) {
+            Log.e(TAG, "getCourse", e);
+        }
+        return null;
+    }
+
     public int updateCourse(Course course) {
         try {
             return dbHelper.getCourseDao().update(course);
@@ -94,7 +103,7 @@ public class CourseManager {
         return 0;
     }
 
-    public boolean deleteCourse(Course course){
+    public boolean deleteCourse(Course course) {
         try {
             dbHelper.getCourseDao().delete(course);
             dbHelper.getSpacetimeDao().delete(course.getSpacetimes());
@@ -105,7 +114,7 @@ public class CourseManager {
         return false;
     }
 
-    public boolean deleteSpacetime(Spacetime spacetime){
+    public boolean deleteSpacetime(Spacetime spacetime) {
         try {
             dbHelper.getSpacetimeDao().delete(spacetime);
             return true;
