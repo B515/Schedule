@@ -167,9 +167,9 @@ public class CourseManageActivity extends AppCompatActivity {
 
     @Override
     protected void onDestroy() {
-        super.onDestroy();
         // This reloads MainActivity. Much easier.
         ThemeHelper.getInstance().recreate(this);
+        super.onDestroy();
     }
 
     private void dismissProgressDialog() {
