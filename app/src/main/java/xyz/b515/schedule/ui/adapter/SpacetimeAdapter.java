@@ -38,7 +38,6 @@ public class SpacetimeAdapter extends RecyclerView.Adapter<SpacetimeAdapter.Spac
     @Override
     public SpacetimeViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
         ItemSpacetimeBinding binding = DataBindingUtil.inflate(LayoutInflater.from(viewGroup.getContext()), R.layout.item_spacetime, viewGroup, false);
-
         return new SpacetimeViewHolder(binding.getRoot());
     }
 
@@ -83,7 +82,6 @@ public class SpacetimeAdapter extends RecyclerView.Adapter<SpacetimeAdapter.Spac
             return 0;
         }
         return items.size();
-
     }
 
     class SpacetimeViewHolder extends RecyclerView.ViewHolder {

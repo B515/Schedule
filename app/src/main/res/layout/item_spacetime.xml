@@ -5,7 +5,7 @@
 
         <variable
             name="spacetime"
-            type="xyz.b515.schedule.entity.Spacetime" />
+            type="xyz.b515.schedule.entity.Spacetime"/>
     </data>
 
     <android.support.v7.widget.CardView
@@ -17,7 +17,6 @@
         android:foreground="?android:attr/selectableItemBackground"
         android:orientation="vertical">
 
-
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -28,7 +27,7 @@
                 android:id="@+id/spinner"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center" />
+                android:layout_gravity="center"/>
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -51,8 +50,8 @@
                         android:hint="@string/spacetime_start"
                         android:inputType="number|numberDecimal"
                         android:singleLine="true"
-                        android:text="@{spacetime.startWeek}"
-                        android:textSize="16sp" />
+                        android:text="@={spacetime.startWeek}"
+                        android:textSize="16sp"/>
 
                 </android.support.design.widget.TextInputLayout>
 
@@ -63,7 +62,7 @@
                     android:layout_weight="1"
                     android:gravity="center"
                     android:text="-"
-                    android:textColor="@android:color/black" />
+                    android:textColor="@android:color/black"/>
 
                 <android.support.design.widget.TextInputLayout
                     android:layout_width="@dimen/spacetime_length"
@@ -79,8 +78,8 @@
                         android:gravity="center"
                         android:hint="@string/spacetime_end"
                         android:inputType="number|numberDecimal"
-                        android:text="@{spacetime.endWeek}"
-                        android:textSize="16sp" />
+                        android:text="@={spacetime.endWeek}"
+                        android:textSize="16sp"/>
 
                 </android.support.design.widget.TextInputLayout>
             </LinearLayout>
@@ -106,8 +105,8 @@
                         android:hint="@string/spacetime_start_time"
                         android:inputType="number|numberDecimal"
                         android:singleLine="true"
-                        android:text="@{spacetime.startTime}"
-                        android:textSize="16sp" />
+                        android:text="@={spacetime.startTime}"
+                        android:textSize="16sp"/>
 
                 </android.support.design.widget.TextInputLayout>
 
@@ -118,7 +117,7 @@
                     android:layout_weight="1"
                     android:gravity="center"
                     android:text="-"
-                    android:textColor="@android:color/black" />
+                    android:textColor="@android:color/black"/>
 
                 <android.support.design.widget.TextInputLayout
                     android:layout_width="@dimen/spacetime_length"
@@ -134,8 +133,8 @@
                         android:gravity="center"
                         android:hint="@string/spacetime_end_time"
                         android:inputType="number|numberDecimal"
-                        android:text="@{spacetime.endTime}"
-                        android:textSize="16sp" />
+                        android:text="@={spacetime.endTime}"
+                        android:textSize="16sp"/>
 
                 </android.support.design.widget.TextInputLayout>
             </LinearLayout>
@@ -151,8 +150,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="@string/spacetime_place"
-                    android:text="@{spacetime.location}"
-                    android:textSize="16sp" />
+                    android:text="@={spacetime.location}"
+                    android:textSize="16sp"/>
 
             </android.support.design.widget.TextInputLayout>
 
@@ -162,7 +161,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:text="@string/spacetime_delete" />
+                android:text="@string/spacetime_delete"/>
         </LinearLayout>
     </android.support.v7.widget.CardView>
 </layout>

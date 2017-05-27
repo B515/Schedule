@@ -1,5 +1,9 @@
 package xyz.b515.schedule.entity;
 
+import android.databinding.BindingAdapter;
+import android.databinding.InverseBindingAdapter;
+import android.widget.TextView;
+
 import com.j256.ormlite.field.DatabaseField;
 import com.j256.ormlite.table.DatabaseTable;
 
@@ -32,6 +36,17 @@ public class Spacetime {
         this.location = location;
         this.oddWeek = oddWeek;
         this.evenWeek = evenWeek;
+    }
+
+    @BindingAdapter("android:text")
+    public static void setText(TextView view, int value) {
+        view.setText(String.valueOf(value));
+    }
+
+    @InverseBindingAdapter(attribute = "android:text")
+    public static int getText(TextView view) {
+        String text = view.getText().toString();
+        return text.isEmpty() ? 0 : Integer.parseInt(text);
     }
 
     public int getWeekday() {

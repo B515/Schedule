@@ -7,9 +7,9 @@
     <string name="action_import">导入课程</string>
     <string name="action_import_file">从文件导入课程</string>
     <string name="action_delete_forever">永久删除</string>
-    <string name="alert_neg">去意已决 下次再说</string>
-    <string name="alert_pos">我就是要任性地删除</string>
-    <string name="alert_title">严正警告</string>
+    <string name="alert_neg">取消</string>
+    <string name="alert_pos">确定</string>
+    <string name="alert_title">警告</string>
     <string name="course_edit">编辑课程</string>
     <string name="course_new">新建课程</string>
     <string name="settings_about_content">2333</string>
