@@ -36,7 +36,7 @@ dependencies {
     compile 'com.jakewharton:butterknife:8.6.0'
     compile 'org.jsoup:jsoup:1.10.2'
     compile 'com.j256.ormlite:ormlite-android:5.0'
-    compile 'net.sourceforge.streamsupport:streamsupport:1.5.4'
+    compile 'net.sourceforge.streamsupport:streamsupport:1.5.5'
     compile 'com.jrummyapps:colorpicker:2.1.7'
     compile 'com.github.hotchemi:permissionsdispatcher:2.3.2'
     annotationProcessor 'com.jakewharton:butterknife-compiler:8.6.0'
