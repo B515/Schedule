@@ -7,7 +7,6 @@
     <string name="action_import">导入课程</string>
     <string name="action_import_file">从文件导入课程</string>
     <string name="action_delete_forever">永久删除</string>
-    <string name="alert_msg">确认删除此课程？</string>
     <string name="alert_neg">去意已决 下次再说</string>
     <string name="alert_pos">我就是要任性地删除</string>
     <string name="alert_title">严正警告</string>
@@ -61,4 +60,9 @@
     <string name="spacetime_end">截止周</string>
     <string name="spacetime_place">地点</string>
     <string name="spacetime_delete">删除</string>
+    <string name="action_add_spacetime">添加新的时间和地点</string>
+    <string name="alert_message">永久删除？</string>
+    <string name="alert_discard">放弃操作？</string>
+    <string name="spacetime_start_time">起始时间</string>
+    <string name="spacetime_end_time">终止时间</string>
 </resources>

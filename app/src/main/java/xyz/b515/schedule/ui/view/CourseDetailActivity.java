@@ -4,54 +4,110 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.EditText;
+
+import java.util.ArrayList;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import xyz.b515.schedule.Constant;
 import xyz.b515.schedule.R;
+import xyz.b515.schedule.db.CourseManager;
+import xyz.b515.schedule.entity.Course;
+import xyz.b515.schedule.entity.Spacetime;
+import xyz.b515.schedule.ui.adapter.SpacetimeAdapter;
 
 public class CourseDetailActivity extends AppCompatActivity {
-    @BindView(R.id.course_toolbar) Toolbar toolbar;
+    @BindView(R.id.course_toolbar)
+    Toolbar toolbar;
+    @BindView(R.id.recycler)
+    RecyclerView recycler;
+    @BindView(R.id.course_name)
+    EditText nameView;
+    @BindView(R.id.course_teacher)
+    EditText teacherView;
+    CourseManager manager;
+    SpacetimeAdapter adapter;
+    Course course;
     Boolean flag;
+    ArrayList<Spacetime> list = new ArrayList<>();
+    int courseId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_course_detail);
         ButterKnife.bind(this);
+
+        manager = new CourseManager(this);
+        LinearLayoutManager llm = new LinearLayoutManager(this);
+        llm.setOrientation(LinearLayoutManager.VERTICAL);
+        recycler.setLayoutManager(llm);
+
         Intent intent = getIntent();
         flag = intent.getBooleanExtra(Constant.TOOLBAR_TITLE, true);
-        int courseId = intent.getIntExtra(Constant.COURSE_ID, 0);
+        adapter = new SpacetimeAdapter(list, this, manager, flag);
+        recycler.setAdapter(adapter);
+        courseId = intent.getIntExtra(Constant.COURSE_ID, 0);
         toolbar.setTitle(flag ? R.string.course_new : R.string.course_edit);
         setSupportActionBar(toolbar);
 
-        toolbar.setNavigationOnClickListener(v -> onBackPressed());
-        toolbar.setOnMenuItemClickListener(menuItem -> {
-            if (menuItem.getItemId() == R.id.action_confirm) {
-                //TODO Actions after confirm
+        if (flag) {
+            course = new Course();
+            manager.insertCourse(course);
 
-                onBackPressed();
-                return true;
-            }
-            if (menuItem.getItemId() == R.id.action_delete_forever) {
+        } else {
+            course = manager.getCourse(courseId);
+        }
+        loadSpacetime();
+        toolbar.setNavigationOnClickListener(v -> {
+            if (flag) {
                 new AlertDialog.Builder(this)
                         .setTitle(R.string.alert_title)
-                        .setMessage(R.string.alert_title)
+                        .setMessage(R.string.alert_discard)
                         .setPositiveButton(R.string.alert_pos, (dialog, which) -> {
-                            //TODO Actions after confirm
-
+                            manager.deleteCourse(course);
+                            onBackPressed();
+                        })
+                        .setNegativeButton(R.string.alert_neg, (dialog, which) -> {
+                        })
+                        .show();
+            } else onBackPressed();
+        });
+        toolbar.setOnMenuItemClickListener(menuItem -> {
+            if (menuItem.getItemId() == R.id.action_confirm) {
+                //Confirm
+                course.setName(nameView.getText().toString());
+                course.setTeacher(teacherView.getText().toString());
+                manager.updateCourse(course);
+                for (Spacetime st : adapter.items) manager.updateSpacetime(st);
+                onBackPressed();
+            } else if (menuItem.getItemId() == R.id.action_delete_forever) {
+                //Delete
+                new AlertDialog.Builder(this)
+                        .setTitle(R.string.alert_title)
+                        .setMessage(R.string.alert_message)
+                        .setPositiveButton(R.string.alert_pos, (dialog, which) -> {
+                            manager.deleteCourse(course);
                             onBackPressed();
                         })
                         .setNegativeButton(R.string.alert_neg, (dialog, which) -> {
                             onBackPressed();
                         })
                         .show();
-                return true;
+            } else if (menuItem.getItemId() == R.id.action_add_spacetime) {
+                Spacetime spacetime = new Spacetime();
+                spacetime.setCourse(course);
+                manager.insertSpacetime(spacetime);
+                adapter.items.add(spacetime);
+                adapter.notifyDataSetChanged();
             }
-            return false;
+            return true;
         });
     }
 
@@ -61,5 +117,15 @@ public class CourseDetailActivity extends AppCompatActivity {
         MenuItem deleteAction = menu.findItem(R.id.action_delete_forever);
         deleteAction.setVisible(!flag);
         return true;
+    }
+
+    private void loadSpacetime() {
+        adapter.items.clear();
+        if (!flag) {
+            list.addAll(manager.getCourse(courseId).getSpacetimes());
+            nameView.setText(course.getName());
+            teacherView.setText(course.getTeacher());
+        }
+        adapter.notifyDataSetChanged();
     }
 }

@@ -13,7 +13,6 @@
     <string name="action_clear">Clear all</string>
 
     <string name="alert_title">Warning</string>
-    <string name="alert_msg">Do you really want to delete this course?</string>
     <string name="alert_neg">Cancel</string>
     <string name="alert_pos">Okay</string>
 
@@ -67,5 +66,10 @@
     <string name="spacetime_end">End Week</string>
     <string name="spacetime_place">Place</string>
     <string name="spacetime_delete">Delete</string>
+    <string name="action_add_spacetime">Add new time and place</string>
+    <string name="alert_message">Delete forever?</string>
+    <string name="alert_discard">Discard changes?</string>
+    <string name="spacetime_start_time">Start Time</string>
+    <string name="spacetime_end_time">End Time</string>
 
 </resources>
