@@ -41,7 +41,11 @@ public class CourseAdapter extends RecyclerView.Adapter<CourseAdapter.CourseView
     @Override
     public void onBindViewHolder(CourseViewHolder holder, int position) {
         holder.tvName.setText(items.get(position).getName());
-        holder.tvLocation.setText(((Spacetime) items.get(position).getSpacetimes().toArray()[0]).getLocation());
+        String locations = StreamSupport.stream(items.get(position).getSpacetimes())
+                .map(Spacetime::getLocation)
+                .distinct()
+                .collect(Collectors.joining(", "));
+        holder.tvLocation.setText(locations);
         holder.tvTeacher.setText(items.get(position).getTeacher());
 
         String[] weeks = DateFormatSymbols.getInstance().getShortWeekdays();

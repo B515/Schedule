@@ -13,7 +13,6 @@
     <string name="action_clear">Clear all</string>
 
     <string name="alert_title">Warning</string>
-    <string name="alert_msg">Do you really want to delete this course?</string>
     <string name="alert_neg">Cancel</string>
     <string name="alert_pos">Okay</string>
 
@@ -21,7 +20,7 @@
     <string name="course_new">New Course</string>
     <string name="course_manage">Manage courses</string>
 
-    <string name="settings_about_content">2333</string>
+    <string name="settings_about_content" translatable="false">15071005 王涵\n15071018 刘云\n15071017 赵以梁</string>
     <string name="settings_about_title">About us</string>
     <string name="settings_category_about">About</string>
     <string name="settings_category_dlc">DLC</string>
@@ -41,6 +40,7 @@
     <string name="settings_user_hint">Enter user name here</string>
     <string name="settings_user_title">User Number</string>
     <string name="settings_version_title">Version</string>
+    <string name="settings_source_title">Source code</string>
 
     <string name="theme_tick" translatable="false">✓</string>
     <string name="theme_title">Theme</string>
@@ -67,5 +67,10 @@
     <string name="spacetime_end">End Week</string>
     <string name="spacetime_place">Place</string>
     <string name="spacetime_delete">Delete</string>
-
+    <string name="action_add_spacetime">Add new time and place</string>
+    <string name="alert_message">Delete forever?</string>
+    <string name="alert_discard">Discard changes?</string>
+    <string name="spacetime_start_time">Start Time</string>
+    <string name="spacetime_end_time">End Time</string>
+    <string name="source_code_url" translatable="false">https://github.com/B515/Schedule</string>
 </resources>

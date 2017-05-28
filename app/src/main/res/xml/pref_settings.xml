@@ -37,17 +37,15 @@
             android:title="@string/settings_theme_title"/>
     </PreferenceCategory>
 
-    <PreferenceCategory android:title="@string/settings_category_language">
-        <!--
+    <!--<PreferenceCategory android:title="@string/settings_category_language">
                 <ListPreference
                     android:key="language"
                     android:title="@string/settings_language_title"
                     android:summary="@string/settings_language_summary"
                     android:entries="@array/language"
                     android:entryValues="@array/language_value"/>
-        -->
     </PreferenceCategory>
-
+-->
     <PreferenceCategory android:title="@string/settings_category_about">
         <Preference
             android:summary="@string/settings_about_content"
@@ -56,6 +54,11 @@
         <Preference
             android:key="version"
             android:title="@string/settings_version_title"/>
+
+        <Preference
+            android:key="source"
+            android:summary="@string/source_code_url"
+            android:title="@string/settings_source_title"/>
     </PreferenceCategory>
 
 </PreferenceScreen>

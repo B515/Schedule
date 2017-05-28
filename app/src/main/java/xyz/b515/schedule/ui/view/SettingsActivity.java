@@ -1,6 +1,7 @@
 package xyz.b515.schedule.ui.view;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.preference.EditTextPreference;
 import android.preference.Preference;
@@ -35,6 +36,7 @@ public class SettingsActivity extends AppCompatActivity {
         Preference versionPreference;
         SwitchPreference splashScreenPreference;
         Preference themePreference;
+        Preference sourcePreference;
         private static Preference.OnPreferenceChangeListener onPreferenceChangeListener = (preference, newValue) -> {
             String value = newValue.toString();
             if (value.isEmpty()) {
@@ -57,6 +59,7 @@ public class SettingsActivity extends AppCompatActivity {
             versionPreference = findPreference("version");
             splashScreenPreference = (SwitchPreference) findPreference("splash_screen");
             themePreference = findPreference("theme");
+            sourcePreference=findPreference("source");
 
             versionPreference.setSummary(BuildConfig.VERSION_NAME);
 
@@ -68,6 +71,10 @@ public class SettingsActivity extends AppCompatActivity {
             });
             themePreference.setOnPreferenceClickListener(preference -> {
                 getContext().startActivity(new Intent(getContext(), ThemeActivity.class));
+                return true;
+            });
+            sourcePreference.setOnPreferenceClickListener( preference ->{
+                startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(getResources().getString(R.string.source_code_url))));
                 return true;
             });
         }
