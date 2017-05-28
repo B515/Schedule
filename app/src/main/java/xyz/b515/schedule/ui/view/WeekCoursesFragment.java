@@ -97,7 +97,8 @@ public class WeekCoursesFragment extends Fragment {
         TextView textView = ButterKnife.findById(v, R.id.course_name);
         textView.setText(course.getName() + "\n" + spacetime.getLocation());
         v.setBackgroundColor(course.getColor());
-        v.setX((spacetime.getWeekday() - 1) * baseWidth);
+        int weekday = spacetime.getWeekday() == 1 ? 7 : spacetime.getWeekday() - 1;
+        v.setX((weekday - 1) * baseWidth);
         v.setY((spacetime.getStartTime() - 1) * baseHeight);
         coursesLayout.addView(v);
         v.getLayoutParams().height = (spacetime.getEndTime() - spacetime.getStartTime() + 1) * baseHeight;
