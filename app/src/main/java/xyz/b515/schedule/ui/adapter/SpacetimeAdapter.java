@@ -11,6 +11,8 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 
 import java.text.DateFormatSymbols;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import xyz.b515.schedule.R;
@@ -44,19 +46,22 @@ public class SpacetimeAdapter extends RecyclerView.Adapter<SpacetimeAdapter.Spac
     @Override
     public void onBindViewHolder(SpacetimeViewHolder holder, int position) {
         holder.binding.setSpacetime(items.get(position));
-        String[] weeks = DateFormatSymbols.getInstance().getShortWeekdays();
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(context, android.R.layout.simple_spinner_dropdown_item, weeks);
+
+        ArrayList<String> weeks = new ArrayList<>(Arrays.asList(DateFormatSymbols.getInstance().getShortWeekdays()));
+        weeks.remove(0);
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(context, android.R.layout.simple_spinner_dropdown_item, weeks);
         holder.binding.spinner.setAdapter(adapter);
-        if(!flag) {
-            holder.binding.spinner.setSelection(items.get(position).getWeekday());
+        if (!flag) {
+            holder.binding.spinner.setSelection(items.get(position).getWeekday() - 1);
         }
+
         holder.binding.spacetimeDelete.setOnClickListener(v -> {
             new AlertDialog.Builder(context)
                     .setTitle(R.string.alert_title)
                     .setMessage(R.string.alert_message)
                     .setPositiveButton(R.string.alert_pos, (dialog, which) -> {
-                        manager.deleteSpacetime(items.get(position));
-                        items.remove(position);
+                        manager.deleteSpacetime(items.get(holder.getAdapterPosition()));
+                        items.remove(holder.getAdapterPosition());
                         notifyDataSetChanged();
                     })
                     .setNegativeButton(R.string.alert_neg, (dialog, which) -> {
@@ -66,7 +71,7 @@ public class SpacetimeAdapter extends RecyclerView.Adapter<SpacetimeAdapter.Spac
         holder.binding.spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int pos, long id) {
-                items.get(position).setWeekday(pos);
+                items.get(holder.getAdapterPosition()).setWeekday(pos + 1);
             }
 
             @Override
