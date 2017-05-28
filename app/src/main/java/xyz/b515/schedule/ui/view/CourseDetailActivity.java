@@ -1,5 +1,6 @@
 package xyz.b515.schedule.ui.view;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
@@ -9,6 +10,7 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 
 import com.jrummyapps.android.colorpicker.ColorPanelView;
@@ -84,6 +86,7 @@ public class CourseDetailActivity extends AppCompatActivity {
                 }
             });
             dialog.show(getFragmentManager(), "");
+            ((InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE)).hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
         });
         toolbar.setNavigationOnClickListener(v -> {
             if (flag) {

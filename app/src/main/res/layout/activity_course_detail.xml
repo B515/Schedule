@@ -13,49 +13,63 @@
         android:orientation="vertical"
         app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
-        <android.support.design.widget.TextInputLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="2dp"
-            android:padding="4dp">
-
-            <EditText
-                android:id="@+id/course_name"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="@string/course_name"
-                android:textSize="16sp"/>
-        </android.support.design.widget.TextInputLayout>
-
-        <android.support.design.widget.TextInputLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="2dp"
-            android:padding="4dp">
-
-            <EditText
-                android:id="@+id/course_teacher"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="@string/course_teacher"
-                android:textSize="16sp"/>
-        </android.support.design.widget.TextInputLayout>
-
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_marginTop="2dp"
-            android:padding="8dp">
+            android:baselineAligned="false"
+            android:orientation="horizontal">
 
-            <TextView
+            <LinearLayout
                 android:layout_width="wrap_content"
-                android:textSize="12sp"
-                android:paddingBottom="5dp"
-                android:text="@string/course_color"
-                android:layout_height="wrap_content"/>
+                android:layout_height="wrap_content"
+                android:layout_weight="3"
+                android:orientation="vertical">
 
-            <include layout="@layout/cpv_color_item_circle"/>
+                <android.support.design.widget.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="2dp"
+                    android:padding="4dp">
+
+                    <EditText
+                        android:id="@+id/course_name"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/course_name"
+                        android:textSize="16sp"/>
+                </android.support.design.widget.TextInputLayout>
+
+                <android.support.design.widget.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="2dp"
+                    android:padding="4dp">
+
+                    <EditText
+                        android:id="@+id/course_teacher"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/course_teacher"
+                        android:textSize="16sp"/>
+                </android.support.design.widget.TextInputLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingBottom="5dp"
+                    android:text="@string/course_color"
+                    android:textSize="12sp"/>
+
+                <include layout="@layout/cpv_color_item_circle"/>
+            </LinearLayout>
         </LinearLayout>
 
         <android.support.v7.widget.RecyclerView
