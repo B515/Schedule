@@ -65,4 +65,5 @@
     <string name="spacetime_start_time">起始时间</string>
     <string name="spacetime_end_time">终止时间</string>
     <string name="settings_source_title">源代码</string>
+    <string name="course_color">颜色</string>
 </resources>

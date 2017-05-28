@@ -63,12 +63,25 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 preferences.edit().putInt(Constant.CURRENT_WEEK, position).apply();
+                reload();
             }
 
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
             }
         });
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        reload();
+    }
+
+    private void reload() {
+        int page = viewPager.getCurrentItem();
+        viewPager.setAdapter(new CourseFragmentAdapter(getSupportFragmentManager()));
+        viewPager.setCurrentItem(page);
     }
 
     private void checkCurrentWeek() {

@@ -11,6 +11,11 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.EditText;
 
+import com.jrummyapps.android.colorpicker.ColorPanelView;
+import com.jrummyapps.android.colorpicker.ColorPickerDialog;
+import com.jrummyapps.android.colorpicker.ColorPickerDialogListener;
+import com.jrummyapps.android.colorpicker.ColorShape;
+
 import java.util.ArrayList;
 
 import butterknife.BindView;
@@ -23,14 +28,11 @@ import xyz.b515.schedule.entity.Spacetime;
 import xyz.b515.schedule.ui.adapter.SpacetimeAdapter;
 
 public class CourseDetailActivity extends AppCompatActivity {
-    @BindView(R.id.course_toolbar)
-    Toolbar toolbar;
-    @BindView(R.id.recycler)
-    RecyclerView recycler;
-    @BindView(R.id.course_name)
-    EditText nameView;
-    @BindView(R.id.course_teacher)
-    EditText teacherView;
+    @BindView(R.id.toolbar) Toolbar toolbar;
+    @BindView(R.id.recycler) RecyclerView recycler;
+    @BindView(R.id.course_name) EditText nameView;
+    @BindView(R.id.course_teacher) EditText teacherView;
+    @BindView(R.id.cpv_color_panel_view) ColorPanelView colorPanelView;
     CourseManager manager;
     SpacetimeAdapter adapter;
     Course course;
@@ -60,11 +62,29 @@ public class CourseDetailActivity extends AppCompatActivity {
         if (flag) {
             course = new Course();
             manager.insertCourse(course);
-
         } else {
             course = manager.getCourse(courseId);
         }
         loadSpacetime();
+        colorPanelView.setOnClickListener(v -> {
+            ColorPickerDialog dialog = ColorPickerDialog.newBuilder()
+                    .setColor(course.getColor())
+                    .setColorShape(ColorShape.CIRCLE)
+                    .setShowAlphaSlider(true)
+                    .create();
+            dialog.setColorPickerDialogListener(new ColorPickerDialogListener() {
+                @Override
+                public void onColorSelected(int dialogId, int color) {
+                    course.setColor(color);
+                    colorPanelView.setColor(color);
+                }
+
+                @Override
+                public void onDialogDismissed(int dialogId) {
+                }
+            });
+            dialog.show(getFragmentManager(), "");
+        });
         toolbar.setNavigationOnClickListener(v -> {
             if (flag) {
                 new AlertDialog.Builder(this)
@@ -125,6 +145,7 @@ public class CourseDetailActivity extends AppCompatActivity {
             list.addAll(manager.getCourse(courseId).getSpacetimes());
             nameView.setText(course.getName());
             teacherView.setText(course.getTeacher());
+            colorPanelView.setColor(course.getColor());
         }
         adapter.notifyDataSetChanged();
     }
