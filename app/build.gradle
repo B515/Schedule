@@ -1,6 +1,8 @@
 apply plugin: 'com.android.application'
 apply plugin: 'me.tatarka.retrolambda'
 
+def gitCommitCount = "git rev-list HEAD --count".execute().text.trim()
+
 android {
     compileSdkVersion 25
     buildToolsVersion "25.0.2"
@@ -9,7 +11,8 @@ android {
         minSdkVersion 23
         targetSdkVersion 25
         versionCode 1
-        versionName "0.∞.+"
+        versionName "1.0.0"
+        versionNameSuffix = " (${gitCommitCount})"
     }
     buildTypes {
         release {
