@@ -88,47 +88,26 @@ public class CourseDetailActivity extends AppCompatActivity {
             dialog.show(getFragmentManager(), "");
             ((InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE)).hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
         });
-        toolbar.setNavigationOnClickListener(v -> {
-            if (flag) {
-                new AlertDialog.Builder(this)
-                        .setTitle(R.string.alert_title)
-                        .setMessage(R.string.alert_discard)
-                        .setPositiveButton(R.string.alert_pos, (dialog, which) -> {
-                            manager.deleteCourse(course);
-                            onBackPressed();
-                        })
-                        .setNegativeButton(R.string.alert_neg, (dialog, which) -> {
-                        })
-                        .show();
-            } else onBackPressed();
-        });
+        toolbar.setNavigationOnClickListener(v -> onBackPressed());
         toolbar.setOnMenuItemClickListener(menuItem -> {
-            if (menuItem.getItemId() == R.id.action_confirm) {
-                //Confirm
-                course.setName(nameView.getText().toString());
-                course.setTeacher(teacherView.getText().toString());
-                manager.updateCourse(course);
-                for (Spacetime st : adapter.items) manager.updateSpacetime(st);
-                onBackPressed();
-            } else if (menuItem.getItemId() == R.id.action_delete_forever) {
-                //Delete
-                new AlertDialog.Builder(this)
-                        .setTitle(R.string.alert_title)
-                        .setMessage(R.string.alert_message)
-                        .setPositiveButton(R.string.alert_pos, (dialog, which) -> {
-                            manager.deleteCourse(course);
-                            onBackPressed();
-                        })
-                        .setNegativeButton(R.string.alert_neg, (dialog, which) -> {
-                            onBackPressed();
-                        })
-                        .show();
-            } else if (menuItem.getItemId() == R.id.action_add_spacetime) {
-                Spacetime spacetime = new Spacetime();
-                spacetime.setCourse(course);
-                manager.insertSpacetime(spacetime);
-                adapter.items.add(spacetime);
-                adapter.notifyDataSetChanged();
+            switch (menuItem.getItemId()) {
+                case R.id.action_confirm:
+                    course.setName(nameView.getText().toString());
+                    course.setTeacher(teacherView.getText().toString());
+                    manager.updateCourse(course);
+                    for (Spacetime st : adapter.items) manager.updateSpacetime(st);
+                    finish();
+                    break;
+                case R.id.action_delete_forever:
+                    showDeleteConfirm();
+                    break;
+                case R.id.action_add_spacetime:
+                    Spacetime spacetime = new Spacetime();
+                    spacetime.setCourse(course);
+                    manager.insertSpacetime(spacetime);
+                    adapter.items.add(spacetime);
+                    adapter.notifyDataSetChanged();
+                    break;
             }
             return true;
         });
@@ -140,6 +119,41 @@ public class CourseDetailActivity extends AppCompatActivity {
         MenuItem deleteAction = menu.findItem(R.id.action_delete_forever);
         deleteAction.setVisible(!flag);
         return true;
+    }
+
+    @Override
+    public void onBackPressed() {
+        if (flag) {
+            showDiscardConfirm();
+        } else super.onBackPressed();
+    }
+
+    private void showDeleteConfirm() {
+        new AlertDialog.Builder(this)
+                .setTitle(R.string.alert_title)
+                .setMessage(R.string.alert_message)
+                .setPositiveButton(R.string.alert_pos, (dialog, which) -> {
+                    manager.deleteCourse(course);
+                    finish();
+                })
+                .setNegativeButton(R.string.alert_neg, (dialog, which) -> {
+                })
+                .show();
+    }
+
+    private void showDiscardConfirm() {
+        new AlertDialog.Builder(this)
+                .setTitle(R.string.alert_title)
+                .setMessage(R.string.alert_discard)
+                .setPositiveButton(R.string.alert_pos, (dialog, which) -> {
+                    if (flag) {
+                        manager.deleteCourse(course);
+                    }
+                    finish();
+                })
+                .setNegativeButton(R.string.alert_neg, (dialog, which) -> {
+                })
+                .show();
     }
 
     private void loadSpacetime() {
