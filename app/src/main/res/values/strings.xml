@@ -20,7 +20,7 @@
     <string name="course_new">New Course</string>
     <string name="course_manage">Manage courses</string>
 
-    <string name="settings_about_content">2333</string>
+    <string name="settings_about_content" translatable="false">15071005 王涵\n15071018 刘云\n15071017 赵以梁</string>
     <string name="settings_about_title">About us</string>
     <string name="settings_category_about">About</string>
     <string name="settings_category_dlc">DLC</string>
@@ -40,6 +40,7 @@
     <string name="settings_user_hint">Enter user name here</string>
     <string name="settings_user_title">User Number</string>
     <string name="settings_version_title">Version</string>
+    <string name="settings_source_title">Source code</string>
 
     <string name="theme_tick" translatable="false">✓</string>
     <string name="theme_title">Theme</string>
@@ -71,5 +72,5 @@
     <string name="alert_discard">Discard changes?</string>
     <string name="spacetime_start_time">Start Time</string>
     <string name="spacetime_end_time">End Time</string>
-
+    <string name="source_code_url" translatable="false">https://github.com/B515/Schedule</string>
 </resources>

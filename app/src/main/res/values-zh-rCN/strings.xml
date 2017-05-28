@@ -12,7 +12,6 @@
     <string name="alert_title">警告</string>
     <string name="course_edit">编辑课程</string>
     <string name="course_new">新建课程</string>
-    <string name="settings_about_content">2333</string>
     <string name="settings_about_title">关于我们</string>
     <string name="settings_category_about">关于</string>
     <string name="settings_category_language">语言</string>
@@ -65,4 +64,5 @@
     <string name="alert_discard">放弃操作？</string>
     <string name="spacetime_start_time">起始时间</string>
     <string name="spacetime_end_time">终止时间</string>
+    <string name="settings_source_title">源代码</string>
 </resources>
