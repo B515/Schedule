@@ -66,7 +66,6 @@
     <string name="spacetime_start">Start Week</string>
     <string name="spacetime_end">End Week</string>
     <string name="spacetime_place">Place</string>
-    <string name="spacetime_delete">Delete</string>
     <string name="action_add_spacetime">Add new time and place</string>
     <string name="alert_message">Delete forever?</string>
     <string name="alert_discard">Discard changes?</string>
