@@ -141,7 +141,6 @@ public class CourseManageActivity extends AppCompatActivity {
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(text -> {
-                            CourseManager manager = new CourseManager(CourseManageActivity.this);
                             manager.clearCourse();
                             CourseParser.parse(text, manager);
                             loadCourses();

@@ -59,7 +59,7 @@ public class SettingsActivity extends AppCompatActivity {
             versionPreference = findPreference("version");
             splashScreenPreference = (SwitchPreference) findPreference("splash_screen");
             themePreference = findPreference("theme");
-            sourcePreference=findPreference("source");
+            sourcePreference = findPreference("source");
 
             versionPreference.setSummary(BuildConfig.VERSION_NAME);
 
@@ -73,7 +73,7 @@ public class SettingsActivity extends AppCompatActivity {
                 getContext().startActivity(new Intent(getContext(), ThemeActivity.class));
                 return true;
             });
-            sourcePreference.setOnPreferenceClickListener( preference ->{
+            sourcePreference.setOnPreferenceClickListener(preference -> {
                 startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(getResources().getString(R.string.source_code_url))));
                 return true;
             });
