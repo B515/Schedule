@@ -40,7 +40,6 @@ import xyz.b515.schedule.entity.Course;
 import xyz.b515.schedule.ui.adapter.CourseAdapter;
 import xyz.b515.schedule.util.CourseParser;
 import xyz.b515.schedule.util.FileHelper;
-import xyz.b515.schedule.util.ThemeHelper;
 
 @RuntimePermissions
 public class CourseManageActivity extends AppCompatActivity {
@@ -142,7 +141,6 @@ public class CourseManageActivity extends AppCompatActivity {
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(text -> {
-                            CourseManager manager = new CourseManager(CourseManageActivity.this);
                             manager.clearCourse();
                             CourseParser.parse(text, manager);
                             loadCourses();
@@ -163,13 +161,6 @@ public class CourseManageActivity extends AppCompatActivity {
         dismissProgressDialog();
         if (disposable != null && !disposable.isDisposed())
             disposable.dispose();
-    }
-
-    @Override
-    protected void onDestroy() {
-        // This reloads MainActivity. Much easier.
-        ThemeHelper.getInstance().recreate(this);
-        super.onDestroy();
     }
 
     private void dismissProgressDialog() {

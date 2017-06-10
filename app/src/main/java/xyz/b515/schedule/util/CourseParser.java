@@ -1,6 +1,6 @@
 package xyz.b515.schedule.util;
 
-import android.graphics.Color;
+import com.jrummyapps.android.colorpicker.ColorPickerDialog;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -40,8 +40,9 @@ public class CourseParser {
                 course = new Course();
                 course.setName(name);
                 course.setTeacher(nodes.get(2).text());
-                Random rnd = new Random();
-                course.setColor(Color.argb(255, rnd.nextInt(256), rnd.nextInt(256), rnd.nextInt(256)));
+
+                int color = ColorPickerDialog.MATERIAL_COLORS[new Random().nextInt(18)];
+                course.setColor(ColorHelper.shadeColor(color, 0.33));
 
                 manager.insertCourse(course);
             } else {

@@ -20,7 +20,6 @@
     <string name="course_new">New Course</string>
     <string name="course_manage">Manage courses</string>
 
-    <string name="settings_about_content" translatable="false">15071005 王涵\n15071018 刘云\n15071017 赵以梁</string>
     <string name="settings_about_title">About us</string>
     <string name="settings_category_about">About</string>
     <string name="settings_category_dlc">DLC</string>
@@ -66,11 +65,11 @@
     <string name="spacetime_start">Start Week</string>
     <string name="spacetime_end">End Week</string>
     <string name="spacetime_place">Place</string>
-    <string name="spacetime_delete">Delete</string>
     <string name="action_add_spacetime">Add new time and place</string>
     <string name="alert_message">Delete forever?</string>
     <string name="alert_discard">Discard changes?</string>
     <string name="spacetime_start_time">Start Time</string>
     <string name="spacetime_end_time">End Time</string>
     <string name="source_code_url" translatable="false">https://github.com/B515/Schedule</string>
+    <string name="course_color">Color</string>
 </resources>

@@ -18,7 +18,6 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import java8.util.stream.StreamSupport;
 import xyz.b515.schedule.Constant;
 import xyz.b515.schedule.R;
 import xyz.b515.schedule.db.CourseManager;
@@ -53,13 +52,13 @@ public class TodayCoursesFragment extends Fragment {
         recycler.setItemAnimator(new DefaultItemAnimator());
 
         int today = Calendar.getInstance().get(Calendar.DAY_OF_WEEK);
-        int currentWeek = preferences.getInt(Constant.CURRENT_WEEK, -1);
+        int currentWeek = preferences.getInt(Constant.CURRENT_WEEK, -1) + 1;
         adapter.items.clear();
         manager = new CourseManager(getContext());
         List<Course> list = manager.getAllCourse();
         if (list != null) {
-            StreamSupport.stream(list)
-                    .flatMap(course -> StreamSupport.stream(course.getSpacetimes()))
+            list.stream()
+                    .flatMap(course -> course.getSpacetimes().stream())
                     .filter(spacetime -> spacetime.getWeekday() == today)
                     .filter(spacetime -> spacetime.getStartWeek() <= currentWeek && spacetime.getEndWeek() >= currentWeek)
                     .forEach(spacetime -> adapter.items.add(spacetime.getCourse()));
