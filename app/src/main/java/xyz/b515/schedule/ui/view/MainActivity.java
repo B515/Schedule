@@ -21,11 +21,11 @@ import android.widget.TextView;
 
 import java.util.Calendar;
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import java8.util.stream.Collectors;
-import java8.util.stream.RefStreams;
 import xyz.b515.schedule.Constant;
 import xyz.b515.schedule.R;
 
@@ -51,7 +51,7 @@ public class MainActivity extends AppCompatActivity {
         viewPager.setAdapter(new CourseFragmentAdapter(getSupportFragmentManager()));
         tabLayout.setupWithViewPager(viewPager);
 
-        List<String> weeks = RefStreams.iterate(1, i -> i + 1)
+        List<String> weeks = Stream.iterate(1, i -> i + 1)
                 .limit(20)
                 .map(i -> String.format(getResources().getString(R.string.week_num), i))
                 .collect(Collectors.toList());

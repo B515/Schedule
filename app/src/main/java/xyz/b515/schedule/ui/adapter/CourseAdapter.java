@@ -9,11 +9,10 @@ import android.widget.TextView;
 
 import java.text.DateFormatSymbols;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import java8.util.stream.Collectors;
-import java8.util.stream.StreamSupport;
 import xyz.b515.schedule.Constant;
 import xyz.b515.schedule.R;
 import xyz.b515.schedule.entity.Course;
@@ -41,7 +40,7 @@ public class CourseAdapter extends RecyclerView.Adapter<CourseAdapter.CourseView
     @Override
     public void onBindViewHolder(CourseViewHolder holder, int position) {
         holder.tvName.setText(items.get(position).getName());
-        String locations = StreamSupport.stream(items.get(position).getSpacetimes())
+        String locations = items.get(position).getSpacetimes().stream()
                 .map(Spacetime::getLocation)
                 .distinct()
                 .collect(Collectors.joining(", "));
@@ -49,7 +48,7 @@ public class CourseAdapter extends RecyclerView.Adapter<CourseAdapter.CourseView
         holder.tvTeacher.setText(items.get(position).getTeacher());
 
         String[] weeks = DateFormatSymbols.getInstance().getShortWeekdays();
-        String times = StreamSupport.stream(items.get(position).getSpacetimes())
+        String times = items.get(position).getSpacetimes().stream()
                 .map(st -> weeks[st.getWeekday()] + " " + st.getStartTime() + "-" + st.getEndTime())
                 .collect(Collectors.joining(", "));
         holder.tvTime.setText(times);

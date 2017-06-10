@@ -19,7 +19,6 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import java8.util.stream.StreamSupport;
 import xyz.b515.schedule.Constant;
 import xyz.b515.schedule.R;
 import xyz.b515.schedule.db.CourseManager;
@@ -80,11 +79,11 @@ public class WeekCoursesFragment extends Fragment {
     }
 
     private void showCourses() {
-        int currentWeek = preferences.getInt(Constant.CURRENT_WEEK, -1);
+        int currentWeek = preferences.getInt(Constant.CURRENT_WEEK, -1) + 1;
         List<Course> list = manager.getAllCourse();
         if (list != null) {
-            StreamSupport.stream(list)
-                    .flatMap(course -> StreamSupport.stream(course.getSpacetimes()))
+            list.stream()
+                    .flatMap(course -> course.getSpacetimes().stream())
                     .filter(spacetime -> spacetime.getStartWeek() <= currentWeek && spacetime.getEndWeek() >= currentWeek)
                     .forEach(this::addCourseToView);
         }
