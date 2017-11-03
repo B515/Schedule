@@ -50,11 +50,11 @@ object CourseParser {
                         endTime = weeks.last().toInt()
                         startWeek = values[3].toInt()
                         endWeek = values[4].toInt()
+                        location = nodes[3]
+                        oddWeek = "单周" in nodes[1]
+                        evenWeek = "双周" in nodes[1]
                     }
                 }
-                spacetime.location = nodes[3]
-                spacetime.oddWeek = "单周" in nodes[1]
-                spacetime.evenWeek = "双周" in nodes[1]
 
                 manager.insertSpacetime(spacetime)
             }
