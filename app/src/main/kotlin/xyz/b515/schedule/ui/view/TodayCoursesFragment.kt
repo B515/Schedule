@@ -44,7 +44,8 @@ class TodayCoursesFragment : Fragment() {
         val list = manager.getAllCourse()
         list.flatMap { it.spacetimes!! }
                 .filter { it.weekday == today }
-                .filter { it.startWeek <= currentWeek && it.endWeek >= currentWeek }
+                .filter { currentWeek in it.startWeek..it.endWeek }
+                .sortedBy { it.startTime }
                 .forEach { adapter.items.add(it.course) }
         adapter.notifyDataSetChanged()
 
