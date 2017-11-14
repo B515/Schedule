@@ -1,10 +1,14 @@
 package xyz.b515.schedule.util
 
 import android.app.Activity
+import android.app.ActivityManager
 import android.app.Application
+import android.content.Context
 import android.content.Intent
+import android.graphics.BitmapFactory
 import android.os.Bundle
 import android.preference.PreferenceManager
+import android.util.TypedValue
 import xyz.b515.schedule.R
 import java.util.*
 
@@ -28,9 +32,23 @@ object ThemeHelper : Application.ActivityLifecycleCallbacks {
         activity.finish()
     }
 
+    private fun getThemePrimaryColor(context: Context): Int {
+        val value = TypedValue()
+        context.theme.resolveAttribute(R.attr.colorPrimary, value, true)
+        return value.data
+    }
+
+    private fun setTaskDescription(activity: Activity) {
+        val taskDescription = ActivityManager.TaskDescription(activity.getString(R.string.app_name),
+                BitmapFactory.decodeResource(activity.resources, R.mipmap.ic_launcher),
+                getThemePrimaryColor(activity))
+        activity.setTaskDescription(taskDescription)
+    }
+
     override fun onActivityCreated(activity: Activity, bundle: Bundle?) {
         activityList.add(activity)
         activity.setTheme(currentTheme)
+        setTaskDescription(activity)
     }
 
     override fun onActivityStarted(activity: Activity) = Unit
