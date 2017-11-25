@@ -9,7 +9,6 @@ import android.preference.PreferenceManager
 import android.support.design.widget.Snackbar
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.DefaultItemAnimator
-import android.support.v7.widget.LinearLayoutManager
 import android.view.Menu
 import android.view.MenuItem
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -17,6 +16,7 @@ import io.reactivex.disposables.Disposable
 import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.activity_course_manage.*
 import kotlinx.android.synthetic.main.app_bar.*
+import org.jetbrains.anko.startActivity
 import permissions.dispatcher.NeedsPermission
 import permissions.dispatcher.RuntimePermissions
 import xyz.b515.schedule.Constant
@@ -35,7 +35,7 @@ class CourseManageActivity : AppCompatActivity() {
     private val FILE_SELECT_CODE = 0
 
     lateinit var adapter: CourseAdapter
-    lateinit var manager: CourseManager
+    private val manager: CourseManager by lazy { CourseManager(this) }
     private var progressDialog: ProgressDialog? = null
     private var disposable: Disposable? = null
 
@@ -46,15 +46,8 @@ class CourseManageActivity : AppCompatActivity() {
         setSupportActionBar(toolbar)
         toolbar.setNavigationOnClickListener { onBackPressed() }
 
-        fab.setOnClickListener {
-            val intent = Intent(this, CourseDetailActivity::class.java)
-            intent.putExtra(Constant.TOOLBAR_TITLE, true)
-            startActivity(intent)
-        }
+        fab.setOnClickListener { startActivity<CourseDetailActivity>(Constant.TOOLBAR_TITLE to true) }
 
-        val llm = LinearLayoutManager(this)
-        llm.orientation = LinearLayoutManager.VERTICAL
-        recycler.layoutManager = llm
         adapter = CourseAdapter(ArrayList())
         recycler.adapter = adapter
         recycler.itemAnimator = DefaultItemAnimator()
@@ -71,8 +64,7 @@ class CourseManageActivity : AppCompatActivity() {
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        val id = item.itemId
-        when (id) {
+        when (item.itemId) {
             R.id.action_clear -> {
                 manager.clearCourse()
                 loadCourses()
@@ -90,14 +82,13 @@ class CourseManageActivity : AppCompatActivity() {
 
     private fun loadCourses() {
         adapter.items.clear()
-        manager = CourseManager(this)
         adapter.items.addAll(manager.getAllCourse())
         adapter.notifyDataSetChanged()
     }
 
     private fun getCourses(user: String, password: String) {
-        if (disposable != null && !disposable!!.isDisposed)
-            disposable!!.dispose()
+        val d = disposable
+        d?.let { if (!d.isDisposed) d.dispose() }
 
         val loginMap = HashMap<String, String>()
         loginMap.put("TextBox1", user)
@@ -123,24 +114,22 @@ class CourseManageActivity : AppCompatActivity() {
                     loadCourses()
                 }, { throwable ->
                     dismissProgressDialog()
-                    Snackbar.make(recycler, "Error!!!" + throwable.message, Snackbar.LENGTH_LONG)
-                            .setAction("Action", null).show()
+                    Snackbar.make(recycler, "Error!!!" + throwable.message, Snackbar.LENGTH_LONG).show()
                     throwable.printStackTrace()
                 }, { dismissProgressDialog() }
-                ) { dis -> progressDialog = ProgressDialog.show(this@CourseManageActivity, "Schedule", "Now loading...", true, true) { dis.dispose() } }
+                ) { sub -> progressDialog = ProgressDialog.show(this@CourseManageActivity, "Schedule", "Now loading...", true, true) { sub.cancel() } }
     }
 
     override fun onStop() {
         super.onStop()
         dismissProgressDialog()
-        if (disposable != null && !disposable!!.isDisposed)
-            disposable!!.dispose()
+        val d = disposable
+        d?.let { if (!d.isDisposed) d.dispose() }
     }
 
     private fun dismissProgressDialog() {
-        if (progressDialog != null && progressDialog!!.isShowing) {
-            progressDialog!!.dismiss()
-        }
+        val p = progressDialog
+        p?.let { if (p.isShowing) p.dismiss() }
     }
 
     @NeedsPermission(Manifest.permission.READ_EXTERNAL_STORAGE)
@@ -169,7 +158,6 @@ class CourseManageActivity : AppCompatActivity() {
                     val text = String(temp, charset("gb2312"))
                     input.close()
 
-                    val manager = CourseManager(this@CourseManageActivity)
                     manager.clearCourse()
                     CourseParser.parse(text, manager)
                     loadCourses()

@@ -32,7 +32,7 @@ class MainActivity : AppCompatActivity() {
         view_pager.adapter = CourseFragmentAdapter(fragmentManager)
         tab_layout.setupWithViewPager(view_pager)
 
-        val weeks = (1 until 20).map { String.format(getString(R.string.week_num), it) }
+        val weeks = (1..20).map { getString(R.string.week_num).format(it) }
         val adapter = ArrayAdapter(this, R.layout.spinner_item, weeks)
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         spinner.adapter = adapter
@@ -101,8 +101,8 @@ class MainActivity : AppCompatActivity() {
         override fun getCount() = 2
 
         override fun getPageTitle(position: Int): String = when (position) {
-            0 -> resources.getString(R.string.main_today_courses)
-            else -> resources.getString(R.string.main_week_courses)
+            0 -> getString(R.string.main_today_courses)
+            else -> getString(R.string.main_week_courses)
         }
     }
 }

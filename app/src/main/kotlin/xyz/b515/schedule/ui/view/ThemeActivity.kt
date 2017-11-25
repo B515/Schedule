@@ -1,10 +1,8 @@
 package xyz.b515.schedule.ui.view
 
-import android.content.res.Resources
 import android.graphics.drawable.GradientDrawable
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
-import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
@@ -23,13 +21,10 @@ class ThemeActivity : AppCompatActivity() {
         setSupportActionBar(theme_toolbar)
         theme_toolbar.setNavigationOnClickListener { onBackPressed() }
 
-        recycler.layoutManager = LinearLayoutManager(this)
         recycler.adapter = ThemeAdapter()
     }
 
     internal inner class ThemeAdapter : RecyclerView.Adapter<ThemeAdapter.ThemeItemHolder>() {
-        val resources: Resources = getResources()
-        val theme: Resources.Theme = getTheme()
         private val white = resources.getColor(android.R.color.white, theme)
         private val grey = resources.getColor(R.color.secondary_text, theme)
 

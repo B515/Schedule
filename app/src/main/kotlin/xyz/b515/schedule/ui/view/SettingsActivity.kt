@@ -1,11 +1,11 @@
 package xyz.b515.schedule.ui.view
 
-import android.content.Intent
-import android.net.Uri
 import android.os.Bundle
 import android.preference.*
 import android.support.v7.app.AppCompatActivity
 import kotlinx.android.synthetic.main.activity_pref.*
+import org.jetbrains.anko.browse
+import org.jetbrains.anko.startActivity
 import xyz.b515.schedule.BuildConfig
 import xyz.b515.schedule.R
 import xyz.b515.schedule.util.PackageHelper
@@ -41,11 +41,11 @@ class SettingsActivity : AppCompatActivity() {
                 true
             }
             themePreference.setOnPreferenceClickListener {
-                context.startActivity(Intent(context, ThemeActivity::class.java))
+                startActivity<ThemeActivity>()
                 true
             }
             sourcePreference.setOnPreferenceClickListener {
-                startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(resources.getString(R.string.source_code_url))))
+                browse(getString(R.string.source_code_url))
                 true
             }
         }

@@ -30,7 +30,7 @@ class SpacetimeAdapter(var items: ArrayList<Spacetime>, private val context: Con
     override fun onBindViewHolder(holder: SpacetimeViewHolder, position: Int) {
         holder.binding.spacetime = items[position]
 
-        val weeks = ArrayList(Arrays.asList(*DateFormatSymbols.getInstance().shortWeekdays))
+        val weeks = DateFormatSymbols.getInstance().shortWeekdays.toMutableList()
         weeks.removeAt(0)
         val adapter = ArrayAdapter(context, android.R.layout.simple_spinner_dropdown_item, weeks)
         holder.binding.spinner.adapter = adapter

@@ -32,11 +32,13 @@ object ZfRetrofit {
                 }
             })
             .build()
-    val zfService = Retrofit.Builder()
-            .baseUrl(server)
-            .client(httpClient)
-            .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
-            .addConverterFactory(ScalarsConverterFactory.create())
-            .build()
-            .create(ZfService::class.java)
+    val zfService: ZfService by lazy {
+        Retrofit.Builder()
+                .baseUrl(server)
+                .client(httpClient)
+                .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
+                .addConverterFactory(ScalarsConverterFactory.create())
+                .build()
+                .create(ZfService::class.java)
+    }
 }

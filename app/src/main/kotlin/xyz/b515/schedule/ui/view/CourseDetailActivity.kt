@@ -4,7 +4,6 @@ import android.content.Context
 import android.os.Bundle
 import android.support.v7.app.AlertDialog
 import android.support.v7.app.AppCompatActivity
-import android.support.v7.widget.LinearLayoutManager
 import android.view.Menu
 import android.view.inputmethod.InputMethodManager
 import com.jrummyapps.android.colorpicker.ColorPanelView
@@ -19,7 +18,6 @@ import xyz.b515.schedule.db.CourseManager
 import xyz.b515.schedule.entity.Course
 import xyz.b515.schedule.entity.Spacetime
 import xyz.b515.schedule.ui.adapter.SpacetimeAdapter
-import java.util.*
 
 class CourseDetailActivity : AppCompatActivity() {
     val colorPanelView: ColorPanelView by lazy { findViewById<ColorPanelView>(R.id.cpv_color_panel_view) }
@@ -27,7 +25,7 @@ class CourseDetailActivity : AppCompatActivity() {
     lateinit var adapter: SpacetimeAdapter
     lateinit var course: Course
     private var flag: Boolean = true
-    private var list = ArrayList<Spacetime>()
+    private var list = arrayListOf<Spacetime>()
     private var courseId: Int = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -35,11 +33,7 @@ class CourseDetailActivity : AppCompatActivity() {
         setContentView(R.layout.activity_course_detail)
 
         manager = CourseManager(this)
-        val llm = LinearLayoutManager(this)
-        llm.orientation = LinearLayoutManager.VERTICAL
-        recycler.layoutManager = llm
 
-        val intent = intent
         flag = intent.getBooleanExtra(Constant.TOOLBAR_TITLE, true)
         adapter = SpacetimeAdapter(list, this, manager, flag)
         recycler.adapter = adapter
@@ -66,7 +60,7 @@ class CourseDetailActivity : AppCompatActivity() {
                     colorPanelView.color = color
                 }
 
-                override fun onDialogDismissed(dialogId: Int) {}
+                override fun onDialogDismissed(dialogId: Int) = Unit
             })
             dialog.show(fragmentManager, "")
             (getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager).hideSoftInputFromWindow(currentFocus!!.windowToken, InputMethodManager.HIDE_NOT_ALWAYS)
@@ -102,9 +96,9 @@ class CourseDetailActivity : AppCompatActivity() {
     }
 
     override fun onBackPressed() {
-        if (flag) {
+        if (flag)
             showDiscardConfirm()
-        } else
+        else
             super.onBackPressed()
     }
 

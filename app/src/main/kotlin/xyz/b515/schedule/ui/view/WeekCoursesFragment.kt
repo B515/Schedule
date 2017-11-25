@@ -1,7 +1,6 @@
 package xyz.b515.schedule.ui.view
 
 import android.app.Fragment
-import android.content.Intent
 import android.content.SharedPreferences
 import android.os.Bundle
 import android.preference.PreferenceManager
@@ -12,6 +11,7 @@ import android.view.ViewGroup
 import android.widget.LinearLayout
 import android.widget.TextView
 import kotlinx.android.synthetic.main.fragment_week.view.*
+import org.jetbrains.anko.startActivity
 import xyz.b515.schedule.Constant
 import xyz.b515.schedule.R
 import xyz.b515.schedule.db.CourseManager
@@ -22,15 +22,13 @@ import xyz.b515.schedule.entity.Spacetime
  */
 
 class WeekCoursesFragment : Fragment() {
-    lateinit var manager: CourseManager
-    lateinit var preferences: SharedPreferences
+    private val manager: CourseManager by lazy { CourseManager(context) }
+    private val preferences: SharedPreferences by lazy { PreferenceManager.getDefaultSharedPreferences(context) }
     private var baseHeight: Int = 0
     private var baseWidth: Int = 0
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val view = inflater.inflate(R.layout.fragment_week, container, false)
-        manager = CourseManager(context!!)
-        preferences = PreferenceManager.getDefaultSharedPreferences(context)
 
         showHeaders(view)
         showCourses(view)
@@ -83,10 +81,7 @@ class WeekCoursesFragment : Fragment() {
         v.layoutParams.height = (spacetime.endTime - spacetime.startTime + 1) * baseHeight
         v.layoutParams.width = baseWidth
         v.setOnClickListener {
-            val intent = Intent(context, CourseDetailActivity::class.java)
-            intent.putExtra(Constant.TOOLBAR_TITLE, false)
-            intent.putExtra(Constant.COURSE_ID, course.id)
-            context!!.startActivity(intent)
+            context.startActivity<CourseDetailActivity>(Constant.TOOLBAR_TITLE to false, Constant.COURSE_ID to course.id)
         }
     }
 
