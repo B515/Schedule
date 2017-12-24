@@ -19,7 +19,7 @@ object CourseParser {
             if ("周" !in td.text())
                 continue
 
-            for (nodes in td.textNodes().map { it.text() }.chunk(4)) {
+            for (nodes in td.textNodes().map { it.text() }.chunked(4)) {
                 val name = nodes[0]
                 val course: Course
                 if (name !in names) {
@@ -72,11 +72,4 @@ object CourseParser {
         else -> 0
     }
 
-    fun <T> List<T>.chunk(size: Int): List<List<T>> {
-        tailrec fun <T> List<T>._chunk(size: Int, initial: List<List<T>> = emptyList()): List<List<T>> {
-            val result = initial + listOf(this.take(size))
-            return if (this.size > size) this.drop(size)._chunk(size, result) else result
-        }
-        return this._chunk(size)
-    }
 }

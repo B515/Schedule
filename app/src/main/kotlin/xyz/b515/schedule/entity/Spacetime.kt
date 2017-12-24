@@ -1,9 +1,5 @@
 package xyz.b515.schedule.entity
 
-import android.databinding.BindingAdapter
-import android.databinding.InverseBindingAdapter
-import android.widget.TextView
-
 import com.j256.ormlite.field.DatabaseField
 import com.j256.ormlite.table.DatabaseTable
 
@@ -22,20 +18,4 @@ data class Spacetime(
         @DatabaseField var location: String = "",
         @DatabaseField var oddWeek: Boolean = false,
         @DatabaseField var evenWeek: Boolean = false,
-        @DatabaseField(foreign = true, foreignAutoRefresh = true) var course: Course = Course()) {
-
-    companion object {
-        @JvmStatic
-        @BindingAdapter("android:text")
-        fun setText(view: TextView, value: Int) {
-            view.text = value.toString()
-        }
-
-        @JvmStatic
-        @InverseBindingAdapter(attribute = "android:text")
-        fun getText(view: TextView): Int {
-            val text = view.text.toString()
-            return if (text.isEmpty()) 0 else Integer.parseInt(text)
-        }
-    }
-}
+        @DatabaseField(foreign = true, foreignAutoRefresh = true) var course: Course = Course())
