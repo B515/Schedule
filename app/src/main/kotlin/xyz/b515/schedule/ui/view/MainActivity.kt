@@ -1,7 +1,6 @@
 package xyz.b515.schedule.ui.view
 
 import android.app.FragmentManager
-import android.content.Intent
 import android.content.SharedPreferences
 import android.os.Bundle
 import android.preference.PreferenceManager
@@ -13,6 +12,8 @@ import android.view.View
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import kotlinx.android.synthetic.main.activity_main.*
+import org.jetbrains.anko.startActivity
+import org.jetbrains.anko.toast
 import xyz.b515.schedule.Constant
 import xyz.b515.schedule.R
 import java.util.*
@@ -78,18 +79,17 @@ class MainActivity : AppCompatActivity() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
             R.id.action_manage -> {
-                val intent = Intent(this, CourseManageActivity::class.java)
-                startActivity(intent)
+                startActivity<CourseManageActivity>()
             }
             R.id.action_settings -> {
-                val intent = Intent(this, SettingsActivity::class.java)
-                startActivity(intent)
+                startActivity<SettingsActivity>()
             }
             R.id.action_capture -> {
-
+                toast("Wait for ZeroGo to implement this feature!")
             }
+            else -> return super.onOptionsItemSelected(item)
         }
-        return super.onOptionsItemSelected(item)
+        return true
     }
 
     private inner class CourseFragmentAdapter(manager: FragmentManager) : FragmentPagerAdapter(manager) {
