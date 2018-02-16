@@ -9,6 +9,7 @@ import android.preference.PreferenceManager
 import android.support.design.widget.Snackbar
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.DefaultItemAnimator
+import android.text.TextUtils
 import android.view.Menu
 import android.view.MenuItem
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -17,6 +18,7 @@ import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.activity_course_manage.*
 import kotlinx.android.synthetic.main.app_bar.*
 import org.jetbrains.anko.startActivity
+import org.jetbrains.anko.toast
 import permissions.dispatcher.NeedsPermission
 import permissions.dispatcher.RuntimePermissions
 import xyz.b515.schedule.Constant
@@ -71,7 +73,7 @@ class CourseManageActivity : AppCompatActivity() {
             }
             R.id.action_import -> {
                 val prefs = PreferenceManager.getDefaultSharedPreferences(this)
-                getCourses(prefs.getString("user", null), prefs.getString("password", null))
+                getCourses(prefs.getString("user", ""), prefs.getString("password", ""))
             }
             R.id.action_import_file -> {
                 showFileChooserWithPermissionCheck()
@@ -87,6 +89,10 @@ class CourseManageActivity : AppCompatActivity() {
     }
 
     private fun getCourses(user: String, password: String) {
+        if (TextUtils.isEmpty(user) || TextUtils.isEmpty(password)) {
+            toast(R.string.user_empty)
+            return
+        }
         val d = disposable
         d?.let { if (!d.isDisposed) d.dispose() }
 

@@ -19,6 +19,7 @@
     <string name="course_edit">Edit Course</string>
     <string name="course_new">New Course</string>
     <string name="course_manage">Manage courses</string>
+    <string name="user_empty">Please fill in user name and password in Settings.</string>
 
     <string name="settings_about_title">About us</string>
     <string name="settings_category_about">About</string>
