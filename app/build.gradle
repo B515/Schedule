@@ -55,5 +55,5 @@ dependencies {
     implementation 'com.j256.ormlite:ormlite-android:5.0'
     implementation 'com.jrummyapps:colorpicker:2.1.7'
     implementation 'com.github.hotchemi:permissionsdispatcher:3.0.1'
-    kapt 'com.github.hotchemi:permissionsdispatcher-processor:3.0.1'
+    kapt 'com.github.hotchemi:permissionsdispatcher-processor:4.1.0'
 }
